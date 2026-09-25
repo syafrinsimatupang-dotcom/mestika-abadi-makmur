@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { WhatsAppPlanner } from "@/components/WhatsAppPlanner";
+import { ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
 import { siteConfig, whatsappHref } from "@/lib/site";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/kontak/" },
   title: "Kontak & Konsultasi Aluminium Kaca Jabodetabek",
   description:
-    "Hubungi Mestika Abadi Makmur Aluminium untuk konsultasi pintu, jendela, kusen aluminium, partisi kaca, shower box, dan kebutuhan aluminium kaca di Jabodetabek dan sekitarnya.",
+    "Hubungi Mestika Abadi Makmur untuk konsultasi pintu, jendela, kusen aluminium, partisi kaca, shower box, dan kebutuhan aluminium kaca di Jabodetabek dan sekitarnya.",
 };
 
 const heroImage =
@@ -44,7 +45,7 @@ export default function ContactPage() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Chat WhatsApp <span>↗</span>
+                Chat WhatsApp <ArrowUpRightIcon />
               </a>
               <a
                 className="contact-refined-number"
@@ -94,7 +95,7 @@ export default function ContactPage() {
               target="_blank"
               rel="noreferrer"
             >
-              Mulai chat ↗
+              Mulai chat <ArrowUpRightIcon />
             </a>
           </article>
           <article>
@@ -106,7 +107,7 @@ export default function ContactPage() {
             <span>ALAMAT USAHA</span>
             <strong>Cipete, Pinang</strong>
             <a href={siteConfig.mapsUrl} target="_blank" rel="noreferrer">
-              Google Maps ↗
+              Google Maps <ArrowUpRightIcon />
             </a>
           </article>
         </div>
@@ -169,7 +170,7 @@ export default function ContactPage() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Buka Google Maps <span>↗</span>
+                Buka Google Maps <ArrowUpRightIcon />
               </a>
               <Link className="button button-dark-ghost" href="/layanan/">
                 Layanan dan Produk

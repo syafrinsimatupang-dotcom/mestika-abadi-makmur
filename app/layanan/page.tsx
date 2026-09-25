@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { ServicesPageCatalog } from "@/components/ServicesPageCatalog";
+import { ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
 import { whatsappHref } from "@/lib/site";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/layanan/" },
   title: "Layanan dan Produk Aluminium Kaca Jabodetabek",
   description:
-    "Layanan dan produk Mestika Abadi Makmur Aluminium untuk pintu aluminium, jendela aluminium, kusen aluminium, partisi kaca, shower box, sliding, frameless glass dan kebutuhan aluminium kaca di Jabodetabek dan sekitarnya.",
+    "Layanan dan produk Mestika Abadi Makmur untuk pintu aluminium, jendela aluminium, kusen aluminium, partisi kaca, shower box, sliding, frameless glass dan kebutuhan aluminium kaca di Jabodetabek dan sekitarnya.",
 };
 
 const heroImage =
@@ -42,7 +43,7 @@ export default function ServicesPage() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Konsultasi WhatsApp <span>↗</span>
+                Konsultasi WhatsApp <ArrowUpRightIcon />
               </a>
               <a className="services-refined-jump" href="#daftar-layanan">
                 Lihat pilihan <span>↓</span>
@@ -115,7 +116,7 @@ export default function ServicesPage() {
               target="_blank"
               rel="noreferrer"
             >
-              Tanyakan via WhatsApp <span>↗</span>
+              Tanyakan via WhatsApp <ArrowUpRightIcon />
             </a>
           </div>
         </div>

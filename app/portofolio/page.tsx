@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PortfolioCarousel } from "@/components/PortfolioCarousel";
 import { Reveal } from "@/components/Reveal";
+import { ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
 import { whatsappHref } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -30,7 +31,7 @@ export default function PortfolioPage() {
             <span>CATATAN FOTO</span>
             <p>
               Foto pada galeri ini digunakan sebagai referensi jenis pekerjaan
-              yang kami layani dan bukan dokumentasi proyek Abadi Makmur.
+              yang kami layani dan bukan dokumentasi proyek Mestika Abadi Makmur.
             </p>
           </Reveal>
         </div>
@@ -67,7 +68,7 @@ export default function PortfolioPage() {
               target="_blank"
               rel="noreferrer"
             >
-              Konsultasi kebutuhan <span>↗</span>
+              Konsultasi kebutuhan <ArrowUpRightIcon />
             </a>
           </Reveal>
         </div>

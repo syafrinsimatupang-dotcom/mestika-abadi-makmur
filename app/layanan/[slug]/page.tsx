@@ -7,6 +7,7 @@ import { ProcessCarousel } from "@/components/ProcessCarousel";
 import { ServiceDetailPanels } from "@/components/ServiceDetailPanels";
 import { RelatedServicesCollection } from "@/components/RelatedServicesCollection";
 import { MobileMicroAccordion } from "@/components/MobileMicroAccordion";
+import { ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
 import { serviceBySlug, services } from "@/lib/services";
 import { siteConfig, whatsappHref } from "@/lib/site";
 
@@ -35,7 +36,7 @@ export function generateMetadata({
         canonical: `${siteConfig.url}/layanan/${service.slug}/`,
       },
       openGraph: {
-        title: `${service.title} | Abadi Makmur Aluminium`,
+        title: `${service.title} | Mestika Abadi Makmur`,
         description: service.metaDescription,
         type: "website",
         url: `${siteConfig.url}/layanan/${service.slug}/`,
@@ -62,7 +63,6 @@ export default async function ServicePage({
     provider: {
       "@type": "HomeAndConstructionBusiness",
       name: siteConfig.name,
-      legalName: siteConfig.legalName,
       telephone: `+${siteConfig.whatsapp}`,
       address: {
         "@type": "PostalAddress",
@@ -133,7 +133,7 @@ export default async function ServicePage({
                 target="_blank"
                 rel="noreferrer"
               >
-                Konsultasi {service.shortTitle} <span>↗</span>
+                Konsultasi {service.shortTitle} <ArrowUpRightIcon />
               </a>
             </div>
           </Reveal>

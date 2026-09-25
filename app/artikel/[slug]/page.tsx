@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Reveal } from "@/components/Reveal";
 import { ArticleBodyMobile } from "@/components/ArticleBodyMobile";
+import { ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
 import {
   featuredImage,
   getArticleBySlug,
@@ -76,7 +77,7 @@ export default async function ArticleDetailPage({
             tersedia.
           </p>
           <Link className="text-link" href="/artikel/">
-            Kembali ke artikel <span>↗</span>
+            Kembali ke artikel <ArrowUpRightIcon />
           </Link>
         </div>
       </section>

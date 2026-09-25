@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LineGlyph } from "@/components/LineGlyph";
+import { ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
 import { MobileMicroAccordion } from "@/components/MobileMicroAccordion";
 import { AboutStoryMoment } from "@/components/AboutStoryMoment";
 import { siteConfig, whatsappHref } from "@/lib/site";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/tentang/" },
-  title: "Tentang Mestika Abadi Makmur Aluminium",
+  title: "Tentang Mestika Abadi Makmur",
   description:
-    "Tentang Mestika Abadi Makmur Aluminium (CV Kristian Abadi), layanan fabrikasi dan pemasangan aluminium & kaca untuk rumah, ruko, kantor, dan bangunan komersial di Jabodetabek dan sekitarnya.",
+    "Tentang Mestika Abadi Makmur, layanan fabrikasi dan pemasangan aluminium & kaca untuk rumah, ruko, kantor, dan bangunan komersial di Jabodetabek dan sekitarnya.",
 };
 
 const heroImage =
@@ -31,7 +32,7 @@ export default function AboutPage() {
         <div className="container about-refined-hero-grid">
           <div className="about-refined-hero-copy">
             <p className="eyebrow">
-              TENTANG · {siteConfig.legalName.toUpperCase()}
+              TENTANG · {siteConfig.name.toUpperCase()}
             </p>
             <h1>
               Aluminium & kaca
@@ -39,7 +40,7 @@ export default function AboutPage() {
               <span>yang menyesuaikan ruang.</span>
             </h1>
             <p>
-              Mestika Abadi Makmur Aluminium melayani fabrikasi dan pemasangan
+              Mestika Abadi Makmur melayani fabrikasi dan pemasangan
               untuk rumah, ruko, kantor, dan bangunan komersial di Jabodetabek
               dan sekitarnya.
             </p>
@@ -51,10 +52,10 @@ export default function AboutPage() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Konsultasi WhatsApp <span>↗</span>
+                Konsultasi WhatsApp <ArrowUpRightIcon />
               </a>
               <Link className="about-refined-secondary" href="/layanan/">
-                Layanan dan Produk <span>↗</span>
+                Layanan dan Produk <ArrowUpRightIcon />
               </Link>
             </div>
           </div>
@@ -224,7 +225,7 @@ export default function AboutPage() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Konsultasi WhatsApp <span>↗</span>
+                Konsultasi WhatsApp <ArrowUpRightIcon />
               </a>
               <Link className="button button-dark-ghost" href="/layanan/">
                 Layanan dan Produk
