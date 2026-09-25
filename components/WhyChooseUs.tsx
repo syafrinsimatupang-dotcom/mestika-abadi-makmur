@@ -140,9 +140,8 @@ export function WhyChooseUs() {
         <Reveal className="why-us-heading-v2">
           <p className="eyebrow">WHY CHOOSE US</p>
           <div className="why-us-heading-v2-grid">
-            <h2 id="why-us-title">
-              Detail yang terasa.
-              <br />
+            <h2 id="why-us-title" className="why-us-title">
+              <strong>Detail yang terasa.</strong>
               <span>Sebelum dan sesudah terpasang.</span>
             </h2>
             <p>
