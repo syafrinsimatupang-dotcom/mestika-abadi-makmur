@@ -1,21 +1,25 @@
-"use client";
+const brands = [
+  { key: "ykk", name: "YKK AP" },
+  { key: "alko", name: "ALKO Aluminium" },
+  { key: "almasa", name: "ALMASA" },
+  { key: "alexindo", name: "ALEXINDO" },
+  { key: "starmas", name: "STARMAS Inti Aluminium Industry" },
+  { key: "alcomexindo", name: "ALCOMEXINDO" },
+  { key: "alutama", name: "ALUTAMA" },
+  { key: "saa", name: "SAA" },
+  { key: "calindo", name: "CALINDO Aluminium" },
+] as const;
 
-import { useState } from "react";
-
-const items = [
-  "Fabrikasi sesuai kebutuhan",
-  "Hunian & komersial",
-  "Aluminium + kaca",
-  "Konsultasi langsung",
-];
-
-function MarqueeGroup({ hidden = false }: { hidden?: boolean }) {
+function BrandGroup({ hidden = false }: { hidden?: boolean }) {
   return (
     <div className="trust-marquee-group" aria-hidden={hidden || undefined}>
-      {items.map((item) => (
-        <span className="trust-marquee-item" key={item}>
-          <span>{item}</span>
-          <i aria-hidden="true" />
+      {brands.map((brand) => (
+        <span className="trust-marquee-item" key={brand.key}>
+          <span
+            className={`material-brand-logo material-brand-logo-${brand.key}`}
+            role={hidden ? undefined : "img"}
+            aria-label={hidden ? undefined : brand.name}
+          />
         </span>
       ))}
     </div>
@@ -23,42 +27,15 @@ function MarqueeGroup({ hidden = false }: { hidden?: boolean }) {
 }
 
 export function TrustMarquee() {
-  const [paused, setPaused] = useState(false);
-  const [touchPaused, setTouchPaused] = useState(false);
-
   return (
     <section
-      className="trust-rail"
-      aria-label="Kekuatan layanan"
-      data-touch-paused={paused || touchPaused ? "true" : "false"}
-      onPointerDown={(event) => {
-        if (event.pointerType !== "mouse") setTouchPaused(true);
-      }}
-      onPointerUp={() => setTouchPaused(false)}
-      onPointerCancel={() => setTouchPaused(false)}
-      onPointerLeave={() => setTouchPaused(false)}
+      className="trust-rail material-brand-marquee"
+      aria-label="Merek material aluminium yang digunakan"
     >
-      <button
-        type="button"
-        className="trust-pause"
-        aria-label={paused ? "Lanjutkan teks berjalan" : "Jeda teks berjalan"}
-        aria-pressed={paused}
-        onClick={() => setPaused((value) => !value)}
-      >
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          aria-hidden="true"
-        >
-          {paused ? <path d="m9 5 10 7-10 7Z" /> : <path d="M8 5v14M16 5v14" />}
-        </svg>
-      </button>
       <div className="trust-marquee-viewport">
         <div className="trust-marquee-track">
-          <MarqueeGroup />
-          <MarqueeGroup hidden />
+          <BrandGroup />
+          <BrandGroup hidden />
         </div>
       </div>
     </section>

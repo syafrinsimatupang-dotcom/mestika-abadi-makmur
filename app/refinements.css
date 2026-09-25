@@ -1832,3 +1832,171 @@ h2 > span,
     letter-spacing: -.06em;
   }
 }
+
+
+/* ===== 2026-09-25 · Material brand infinite marquee ===== */
+/* Clean Apple-esque logo rail directly below the hero. No controls: continuous
+   motion pauses on hover, while reduced-motion users receive a static strip. */
+.material-brand-marquee {
+  position: relative;
+  width: 100%;
+  padding: 0 !important;
+  overflow: hidden;
+  border-top: 1px solid rgba(22,24,29,.055);
+  border-bottom: 1px solid rgba(22,24,29,.055);
+  background: #fff;
+  box-shadow: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.material-brand-marquee .trust-marquee-viewport {
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 4.5%,
+    #000 95.5%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 4.5%,
+    #000 95.5%,
+    transparent 100%
+  );
+}
+
+.material-brand-marquee .trust-marquee-track {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  will-change: transform;
+  animation: trust-marquee-scroll 32s linear infinite;
+}
+
+.material-brand-marquee:hover .trust-marquee-track {
+  animation-play-state: paused;
+}
+
+.material-brand-marquee .trust-marquee-group {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: clamp(52px, 5vw, 86px);
+  min-height: 112px;
+  padding-right: clamp(52px, 5vw, 86px);
+}
+
+.material-brand-marquee .trust-marquee-item {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 176px;
+  height: 80px;
+  padding: 0;
+  opacity: 1;
+}
+
+.material-brand-logo {
+  display: block;
+  width: 176px;
+  height: 80px;
+  background-image: url('/material-brands/material-brands.webp');
+  background-repeat: no-repeat;
+  background-size: 300% 300%;
+  filter: grayscale(1) saturate(.18);
+  opacity: .58;
+  transform: translateZ(0);
+  transition:
+    filter .32s cubic-bezier(.22,1,.36,1),
+    opacity .32s ease,
+    transform .32s cubic-bezier(.22,1,.36,1);
+}
+
+.material-brand-marquee .trust-marquee-item:hover .material-brand-logo {
+  filter: grayscale(0) saturate(.9);
+  opacity: .96;
+  transform: scale(1.025);
+}
+
+.material-brand-logo-ykk { background-position: 0% 0%; }
+.material-brand-logo-alko { background-position: 50% 0%; }
+.material-brand-logo-almasa { background-position: 100% 0%; }
+.material-brand-logo-alexindo { background-position: 0% 50%; }
+.material-brand-logo-starmas { background-position: 50% 50%; }
+.material-brand-logo-alcomexindo { background-position: 100% 50%; }
+.material-brand-logo-alutama { background-position: 0% 100%; }
+.material-brand-logo-saa { background-position: 50% 100%; }
+.material-brand-logo-calindo { background-position: 100% 100%; }
+
+@media (max-width: 820px) {
+  .material-brand-marquee .trust-marquee-track {
+    animation-duration: 27s;
+  }
+
+  .material-brand-marquee .trust-marquee-group {
+    gap: 36px;
+    min-height: 88px;
+    padding-right: 36px;
+  }
+
+  .material-brand-marquee .trust-marquee-item,
+  .material-brand-logo {
+    width: 132px;
+    height: 60px;
+  }
+
+  .material-brand-marquee .trust-marquee-viewport {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 7%,
+      #000 93%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 7%,
+      #000 93%,
+      transparent 100%
+    );
+  }
+}
+
+@media (max-width: 480px) {
+  .material-brand-marquee .trust-marquee-track {
+    animation-duration: 24s;
+  }
+
+  .material-brand-marquee .trust-marquee-group {
+    gap: 28px;
+    min-height: 82px;
+    padding-right: 28px;
+  }
+
+  .material-brand-marquee .trust-marquee-item,
+  .material-brand-logo {
+    width: 121px;
+    height: 55px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .material-brand-marquee .trust-marquee-track {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .material-brand-marquee .trust-marquee-viewport {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .material-brand-marquee .trust-marquee-viewport::-webkit-scrollbar {
+    display: none;
+  }
+}
