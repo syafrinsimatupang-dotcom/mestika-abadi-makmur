@@ -1280,3 +1280,40 @@ h2 > span,
   align-items: center;
   gap: 7px;
 }
+
+
+/* ===== Mobile brand legibility · code-only crop, original asset preserved =====
+   The source PNG has transparent breathing room. On mobile, a natural auto width
+   makes the visible mark too small, so the image box is widened and vertically
+   cropped with object-fit: cover while keeping the original file untouched. */
+@media (max-width: 820px) {
+  .site-header .brand.brand-logo-link {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: calc(100vw - 92px) !important;
+    height: 48px !important;
+    padding: 5px 7px !important;
+    overflow: hidden !important;
+  }
+
+  .site-header .brand-logo-horizontal {
+    display: block !important;
+    width: clamp(138px, 39vw, 156px) !important;
+    max-width: calc(100vw - 116px) !important;
+    height: 38px !important;
+    max-height: 38px !important;
+    object-fit: cover !important;
+    object-position: left center !important;
+    flex: 0 0 auto !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .site-header .brand-logo-horizontal {
+    width: clamp(132px, 38vw, 148px) !important;
+    max-width: calc(100vw - 114px) !important;
+    height: 38px !important;
+    max-height: 38px !important;
+  }
+}
