@@ -136,8 +136,8 @@ test("why choose us is concise and contact planner preserves input", async ({
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
-  await expect(page.locator(".why-us-card")).toHaveCount(3);
-  await expect(page.locator(".why-us-card").first()).toBeVisible();
+  await expect(page.locator(".why-us-mobile-viewport .why-us-card-v2")).toHaveCount(6);
+  await expect(page.locator(".why-us-mobile-viewport .why-us-card-v2").first()).toBeVisible();
 
   await page.goto("/kontak/");
   await page.getByRole("radio", { name: "Pintu", exact: true }).focus();
