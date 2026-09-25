@@ -28,7 +28,7 @@ export function StickyWhatsApp() {
       href={whatsappHref({ sourcePath: pathname })}
       target="_blank"
       rel="noreferrer"
-      aria-label="Chat Abadi Makmur Aluminium melalui WhatsApp"
+      aria-label="Chat Mestika Abadi Makmur melalui WhatsApp"
       title="Chat via WhatsApp"
     >
       <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">

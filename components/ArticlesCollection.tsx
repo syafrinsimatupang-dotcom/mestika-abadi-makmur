@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
 import { LineGlyph } from "@/components/LineGlyph";
 import { useHorizontalScrollTracker } from "@/components/useHorizontalScrollTracker";
 
@@ -38,7 +39,7 @@ function Card({ post, index }: { post: ArticleCardData; index: number }) {
           <h2>{post.title}</h2>
           <p>{post.excerpt}</p>
           <span className="text-link">
-            Baca artikel <b>↗</b>
+            Baca artikel <b aria-hidden="true"><ArrowUpRightIcon /></b>
           </span>
         </div>
       </Link>

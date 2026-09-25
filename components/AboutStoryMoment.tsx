@@ -43,7 +43,7 @@ export function AboutStoryMoment() {
       ref={ref}
       className="about-story-moment"
       data-nav-theme="dark"
-      aria-label="Prinsip pengerjaan Mestika Abadi Makmur Aluminium"
+      aria-label="Prinsip pengerjaan Mestika Abadi Makmur"
     >
       <div className="about-story-stage">
         <motion.img

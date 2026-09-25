@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { whatsappHref } from "@/lib/site";
+import { ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
 
 // Mobile menu icons are official Iconoir assets (MIT):
 // https://github.com/iconoir-icons/iconoir/blob/main/icons/regular/menu.svg
@@ -163,12 +164,12 @@ export function Header() {
         <Link
           className="brand brand-logo-link"
           href="/"
-          aria-label="Mestika Abadi Makmur Aluminium — Beranda"
+          aria-label="Mestika Abadi Makmur — Beranda"
         >
           <img
             className="brand-logo brand-logo-horizontal"
             src="/brand/Logo Mestika Abadi Makmur - Pakai - Panjang.png"
-            alt="Mestika Abadi Makmur Aluminium"
+            alt="Mestika Abadi Makmur"
             width="2172"
             height="724"
           />
@@ -191,7 +192,7 @@ export function Header() {
           target="_blank"
           rel="noreferrer"
         >
-          Konsultasi <span aria-hidden="true">↗</span>
+          Konsultasi <ArrowUpRightIcon />
         </a>
         <button
           className="menu-button"
@@ -226,7 +227,7 @@ export function Header() {
                 className={isActive(item.href) ? "active" : undefined}
               >
                 {item.label}
-                <span>↗</span>
+                <ArrowUpRightIcon />
               </Link>
             ))}
             <a

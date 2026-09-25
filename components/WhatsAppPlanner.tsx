@@ -4,6 +4,7 @@ import { useId, useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { whatsappHref } from "@/lib/site";
+import { ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
 
 const options = [
   { label: "Pintu", value: "Pintu Aluminium" },
@@ -139,7 +140,7 @@ export function WhatsAppPlanner({
           target="_blank"
           rel="noreferrer"
         >
-          Kirim ke WhatsApp <span>↗</span>
+          Kirim ke WhatsApp <ArrowUpRightIcon />
         </a>
         <p className="planner-footnote">Isi konsultasi tidak disimpan.</p>
       </div>

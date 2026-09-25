@@ -8,7 +8,7 @@ export function Footer() {
       <div className="container footer-grid">
         <div className="footer-brand">
           <div className="footer-logo-shell">
-            <img className="footer-logo" src="/brand/Logo Mestika Abadi Makmur - Pakai - Panjang.png" alt="Mestika Abadi Makmur Aluminium" width="2172" height="724" />
+            <img className="footer-logo" src="/brand/Logo Mestika Abadi Makmur - Pakai - Panjang.png" alt="Mestika Abadi Makmur" width="2172" height="724" />
           </div>
           <p className="eyebrow">{siteConfig.legalName}</p>
           <p>Fabrikasi dan pemasangan aluminium & kaca untuk kebutuhan hunian dan komersial di Jabodetabek dan sekitarnya.</p>
@@ -33,7 +33,7 @@ export function Footer() {
             <Link href="/artikel/">Artikel</Link>
             <Link href="/tentang/">Tentang</Link>
             <Link href="/kontak/">Kontak</Link>
-            <a href={whatsappHref({ sourcePath: '/' })} target="_blank" rel="noreferrer">WhatsApp ↗</a>
+            <a href={whatsappHref({ sourcePath: '/' })} target="_blank" rel="noreferrer">WhatsApp <ArrowUpRightIcon /></a>
           </div>
         </div>
       </div>
