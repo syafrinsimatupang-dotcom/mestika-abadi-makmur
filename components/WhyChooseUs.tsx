@@ -65,7 +65,7 @@ const proof = [
     label: "Garansi pemeliharaan / servis*",
   },
   {
-    value: "24/7",
+    value: "24 / 7",
     label: "Kanal konsultasi dapat dihubungi",
   },
 ] as const;
