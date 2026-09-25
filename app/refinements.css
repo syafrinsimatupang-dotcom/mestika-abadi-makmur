@@ -2902,3 +2902,58 @@ h2 > span,
     grid-auto-columns: 89%;
   }
 }
+
+
+/* ===== 2026-09-25 · Why Choose Us proof-row mobile alignment ===== */
+@media (max-width: 820px) {
+  .why-us-proof {
+    align-items: stretch;
+  }
+
+  .why-us-proof-item {
+    min-height: 106px;
+    display: grid;
+    grid-template-rows: auto minmax(30px, auto);
+    align-content: center;
+    justify-items: center;
+    gap: 9px;
+    padding: 15px 8px;
+    text-align: center;
+  }
+
+  .why-us-proof-item strong {
+    display: block;
+    white-space: nowrap;
+    font-size: clamp(28px, 7.4vw, 36px);
+    line-height: .92;
+    letter-spacing: -.065em;
+  }
+
+  .why-us-proof-item span {
+    min-height: 2.7em;
+    max-width: 13ch;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    color: rgba(22,24,29,.54);
+    font-size: 9.5px;
+    line-height: 1.35;
+    text-align: center;
+  }
+}
+
+@media (max-width: 360px) {
+  .why-us-proof-item {
+    min-height: 102px;
+    padding-inline: 6px;
+  }
+
+  .why-us-proof-item strong {
+    font-size: 27px;
+  }
+
+  .why-us-proof-item span {
+    max-width: 12ch;
+    font-size: 9px;
+  }
+}
