@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Reveal } from "@/components/Reveal";
 import { ArticleBodyMobile } from "@/components/ArticleBodyMobile";
-import { ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
+import { ArrowLeftIcon, ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
 import {
   featuredImage,
   getArticleBySlug,
@@ -120,7 +120,7 @@ export default async function ArticleDetailPage({
         <div className="container article-detail-shell">
           <Reveal className="article-detail-header">
             <Link className="back-link" href="/artikel/">
-              ← Semua artikel
+              <ArrowLeftIcon /> Semua artikel
             </Link>
             <p className="eyebrow">ARTIKEL · {published.toUpperCase()}</p>
             <h1>{title}</h1>

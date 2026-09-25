@@ -7,7 +7,7 @@ import { ProcessCarousel } from "@/components/ProcessCarousel";
 import { ServiceDetailPanels } from "@/components/ServiceDetailPanels";
 import { RelatedServicesCollection } from "@/components/RelatedServicesCollection";
 import { MobileMicroAccordion } from "@/components/MobileMicroAccordion";
-import { ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
+import { ArrowLeftIcon, ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
 import { serviceBySlug, services } from "@/lib/services";
 import { siteConfig, whatsappHref } from "@/lib/site";
 
@@ -106,7 +106,7 @@ export default async function ServicePage({
         <div className="container inner-hero-grid">
           <Reveal className="inner-hero-copy">
             <Link className="back-link" href="/layanan/">
-              ← Semua layanan dan produk
+              <ArrowLeftIcon /> Semua layanan dan produk
             </Link>
             <p className="eyebrow">
               {service.keyword.toUpperCase()} · JABODETABEK

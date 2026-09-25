@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ServicesPageCatalog } from "@/components/ServicesPageCatalog";
-import { ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
+import { ArrowDownIcon, ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
 import { whatsappHref } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -46,7 +46,7 @@ export default function ServicesPage() {
                 Konsultasi WhatsApp <ArrowUpRightIcon />
               </a>
               <a className="services-refined-jump" href="#daftar-layanan">
-                Lihat pilihan <span>↓</span>
+                Lihat pilihan <ArrowDownIcon />
               </a>
             </div>
 
