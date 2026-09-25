@@ -105,20 +105,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="final-cta">
-        <div
-          className="container final-cta-inner dark-surface"
-          data-nav-theme="dark"
-        >
+      <section className="final-cta" data-nav-theme="light">
+        <div className="container final-cta-inner">
           <Reveal>
-            <p className="eyebrow light">MESTIKA ABADI MAKMUR · JABODETABEK</p>
+            <p className="eyebrow">MESTIKA ABADI MAKMUR · JABODETABEK</p>
             <h2>
               Ruang yang lebih rapi
               <br />
               dimulai dari <em>detail.</em>
             </h2>
             <a
-              className="button button-light"
+              className="button button-primary"
               href={whatsappHref({ sourcePath: "/" })}
               target="_blank"
               rel="noreferrer"
