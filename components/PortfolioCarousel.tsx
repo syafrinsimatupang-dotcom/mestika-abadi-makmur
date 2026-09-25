@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { portfolioReferences } from "@/lib/services";
 import { LineGlyph } from "@/components/LineGlyph";
+import { ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
 import { useHorizontalScrollTracker } from "@/components/useHorizontalScrollTracker";
 
 export function PortfolioCarousel({ compact = false }: { compact?: boolean }) {
@@ -14,7 +15,7 @@ export function PortfolioCarousel({ compact = false }: { compact?: boolean }) {
       <div className="carousel-toolbar">
         <p className="carousel-note">
           Foto berikut merupakan referensi jenis pekerjaan yang kami layani,
-          bukan dokumentasi proyek Abadi Makmur.
+          bukan dokumentasi proyek Mestika Abadi Makmur.
         </p>
         <div className="carousel-controls" aria-label="Kontrol carousel">
           <button onClick={() => scrollByItem(-1)} aria-label="Geser ke kiri">
@@ -63,7 +64,7 @@ export function PortfolioCarousel({ compact = false }: { compact?: boolean }) {
                   <p>{item.category}</p>
                   <h3>{item.title}</h3>
                 </div>
-                <span aria-hidden="true">↗</span>
+                <ArrowUpRightIcon />
               </div>
             </motion.article>
           ))}

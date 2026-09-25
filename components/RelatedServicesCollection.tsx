@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { LineGlyph } from "@/components/LineGlyph";
+import { ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
 import { useHorizontalScrollTracker } from "@/components/useHorizontalScrollTracker";
 import { services } from "@/lib/services";
 
@@ -34,7 +35,7 @@ export function RelatedServicesCollection({
         <span className="related-card-index">0{index + 1}</span>
         <p>{item.keyword} Jabodetabek</p>
         <h3>{item.shortTitle}</h3>
-        <b aria-hidden="true">↗</b>
+        <b aria-hidden="true"><ArrowUpRightIcon /></b>
       </div>
     </Link>
   );

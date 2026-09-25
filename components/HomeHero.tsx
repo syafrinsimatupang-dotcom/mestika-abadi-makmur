@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { whatsappHref } from "@/lib/site";
+import { ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
 
 const heroImage =
   "https://images.pexels.com/photos/34880778/pexels-photo-34880778/free-photo-of-modern-minimalist-house-facade-in-jakarta.jpeg";
@@ -46,10 +47,10 @@ export function HomeHero() {
             target="_blank"
             rel="noreferrer"
           >
-            Konsultasi WhatsApp <span aria-hidden="true">&#8599;</span>
+            Konsultasi WhatsApp <ArrowUpRightIcon />
           </a>
           <Link className="button home-hero-secondary" href="/layanan/">
-            Lihat layanan <span aria-hidden="true">&#8599;</span>
+            Lihat layanan <ArrowUpRightIcon />
           </Link>
         </div>
         <p className="home-hero-caption">

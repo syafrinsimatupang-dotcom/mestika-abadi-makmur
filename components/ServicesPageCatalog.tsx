@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { LineGlyph } from '@/components/LineGlyph';
+import { ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
 import { useHorizontalScrollTracker } from '@/components/useHorizontalScrollTracker';
 import { services } from '@/lib/services';
 import { whatsappHref } from '@/lib/site';
@@ -62,7 +63,7 @@ export function ServicesPageCatalog() {
                 <p>{service.description}</p>
                 <div className="services-refined-actions">
                   <Link href={`/layanan/${service.slug}/`}>
-                    Lihat detail <span>↗</span>
+                    Lihat detail <ArrowUpRightIcon />
                   </Link>
                   <a
                     href={whatsappHref({
@@ -72,7 +73,7 @@ export function ServicesPageCatalog() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    Konsultasi WhatsApp <span>↗</span>
+                    Konsultasi WhatsApp <ArrowUpRightIcon />
                   </a>
                 </div>
               </div>
@@ -123,7 +124,7 @@ export function ServicesPageCatalog() {
                     <p>{service.description}</p>
                     <div className="services-refined-mobile-actions">
                       <Link href={`/layanan/${service.slug}/`}>
-                        Detail <span>↗</span>
+                        Detail <ArrowUpRightIcon />
                       </Link>
                       <a
                         href={whatsappHref({
@@ -133,7 +134,7 @@ export function ServicesPageCatalog() {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        WhatsApp <span>↗</span>
+                        WhatsApp <ArrowUpRightIcon />
                       </a>
                     </div>
                   </div>

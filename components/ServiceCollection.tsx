@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { LineGlyph } from '@/components/LineGlyph';
+import { ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
 import { useHorizontalScrollTracker } from '@/components/useHorizontalScrollTracker';
 import { services } from '@/lib/services';
 
@@ -39,7 +40,7 @@ export function ServiceCollection() {
                 <h3>{service.shortTitle}</h3>
                 <p>{service.description}</p>
               </div>
-              <div className="service-link">Detail layanan <span>↗</span></div>
+              <div className="service-link">Detail layanan <ArrowUpRightIcon /></div>
             </Link>
           </motion.article>
         ))}
@@ -86,7 +87,7 @@ export function ServiceCollection() {
                     </div>
                     <h3>{service.shortTitle}</h3>
                     <p>{service.description}</p>
-                    <div className="service-link">Detail layanan <span>↗</span></div>
+                    <div className="service-link">Detail layanan <ArrowUpRightIcon /></div>
                   </div>
                 </Link>
               </article>
