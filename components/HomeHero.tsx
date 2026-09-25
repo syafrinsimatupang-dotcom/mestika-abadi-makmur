@@ -69,7 +69,7 @@ export function HomeHero() {
     renderPointer();
     onScroll();
 
-    const timer = window.setTimeout(() => setComplete(true), 2550);
+    const timer = window.setTimeout(() => setComplete(true), 5200);
 
     return () => {
       window.clearTimeout(timer);
@@ -125,8 +125,18 @@ export function HomeHero() {
           <span className="home-portal-bar home-portal-bar-left" />
           <span className="home-portal-inner-edge home-portal-inner-edge-left" />
           <span className="home-portal-inner-edge home-portal-inner-edge-right" />
+          <span
+            className="home-portal-glass-photo"
+            style={{
+              backgroundImage: `url(${heroImage}?auto=compress&cs=tinysrgb&w=1200)`,
+            }}
+          />
           <span className="home-portal-glass" />
           <span className="home-portal-reflection" />
+          <span className="home-portal-trace home-portal-trace-top" />
+          <span className="home-portal-trace home-portal-trace-right" />
+          <span className="home-portal-trace home-portal-trace-bottom" />
+          <span className="home-portal-trace home-portal-trace-left" />
         </div>
         <div className="home-portal-caption">
           <small>ALUMINIUM · GLASS · PRECISION</small>
@@ -141,7 +151,7 @@ export function HomeHero() {
 
         <h1 id="home-hero-title">
           <strong>Aluminium &amp; kaca.</strong>
-          <span>Dibuat menyatu dengan ruang.</span>
+          <span>Dibuat untuk ruang Anda.</span>
         </h1>
 
         <p className="home-hero-lead">
@@ -156,7 +166,7 @@ export function HomeHero() {
             target="_blank"
             rel="noreferrer"
           >
-            Konsultasi sekarang <ArrowUpRightIcon />
+            Konsultasi <ArrowUpRightIcon />
           </a>
           <Link className="button home-hero-secondary" href="/layanan/">
             Lihat layanan <ArrowUpRightIcon />
