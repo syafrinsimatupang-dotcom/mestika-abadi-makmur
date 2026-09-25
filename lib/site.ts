@@ -1,6 +1,5 @@
 export const siteConfig = {
-  name: 'Mestika Abadi Makmur Aluminium',
-  legalName: 'CV Kristian Abadi',
+  name: 'Mestika Abadi Makmur',
   description:
     'Jasa fabrikasi dan pemasangan aluminium & kaca untuk area Jabodetabek dan sekitarnya: pintu, jendela, kusen, sliding system, partisi kaca, frameless glass, spandrel door, dan shower box.',
   area: 'Jabodetabek dan sekitarnya',
@@ -42,7 +41,7 @@ export function whatsappHref({
   const subject = service || 'kebutuhan aluminium dan kaca';
   const source = websiteUrl(sourcePath);
   const message = [
-    `Halo Mestika Abadi Makmur Aluminium, saya datang dari ${source} dan ingin konsultasi terkait ${subject}.`,
+    `Halo ${siteConfig.name}, saya datang dari ${source} dan ingin konsultasi terkait ${subject}.`,
     ...details.filter(Boolean),
   ].join('\n');
 

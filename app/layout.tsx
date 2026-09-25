@@ -24,8 +24,8 @@ const jakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Mestika Abadi Makmur Aluminium | Aluminium & Kaca Jabodetabek",
-    template: "%s | Mestika Abadi Makmur Aluminium",
+    default: "Mestika Abadi Makmur | Aluminium & Kaca Jabodetabek",
+    template: "%s | Mestika Abadi Makmur",
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "id_ID",
     siteName: siteConfig.name,
-    title: "Mestika Abadi Makmur Aluminium | Aluminium & Kaca Jabodetabek",
+    title: "Mestika Abadi Makmur | Aluminium & Kaca Jabodetabek",
     description: siteConfig.description,
   },
 };

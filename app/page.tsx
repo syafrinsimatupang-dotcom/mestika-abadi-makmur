@@ -10,6 +10,7 @@ import { HomeHero } from "@/components/HomeHero";
 import { MobileMicroAccordion } from "@/components/MobileMicroAccordion";
 import { MarketingMoment } from "@/components/MarketingMoment";
 import { ServiceCollection } from "@/components/ServiceCollection";
+import { ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
 import { services } from "@/lib/services";
 import { siteConfig, whatsappHref } from "@/lib/site";
 
@@ -17,7 +18,7 @@ export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 const homeFaq = [
   {
-    q: "Apakah Abadi Makmur melayani area Jabodetabek?",
+    q: "Apakah Mestika Abadi Makmur melayani area Jabodetabek?",
     a: "Ya. Area layanan mencakup Jakarta, Bogor, Depok, Tangerang, Bekasi, dan sekitarnya. Kirim lokasi proyek melalui WhatsApp untuk konfirmasi jangkauan.",
   },
   {
@@ -35,7 +36,6 @@ export default function HomePage() {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
     name: siteConfig.name,
-    legalName: siteConfig.legalName,
     description: siteConfig.description,
     address: {
       "@type": "PostalAddress",
@@ -131,7 +131,7 @@ export default function HomePage() {
               </h2>
             </div>
             <Link className="text-link" href="/portofolio/">
-              Buka galeri <span>↗</span>
+              Buka galeri <ArrowUpRightIcon />
             </Link>
           </Reveal>
           <PortfolioCarousel compact />
@@ -159,7 +159,7 @@ export default function HomePage() {
                 <span>0{index + 1}</span>
                 <strong>{service.keyword}</strong>
                 <small>Jabodetabek</small>
-                <b>↗</b>
+                <b aria-hidden="true"><ArrowUpRightIcon /></b>
               </Link>
             ))}
           </Reveal>
@@ -229,7 +229,7 @@ export default function HomePage() {
               target="_blank"
               rel="noreferrer"
             >
-              Konsultasi sekarang <span>↗</span>
+              Konsultasi sekarang <ArrowUpRightIcon />
             </a>
           </Reveal>
         </div>

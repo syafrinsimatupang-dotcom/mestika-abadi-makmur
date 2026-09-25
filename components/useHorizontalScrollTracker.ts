@@ -27,19 +27,20 @@ export function useHorizontalScrollTracker(itemCount: number) {
     }
 
     const viewportRect = viewport.getBoundingClientRect();
+    const viewportCenter = viewportRect.left + viewportRect.width / 2;
     const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
     const visualRatio =
       maxScroll === 0 ? 0 : clamp(viewport.scrollLeft / maxScroll);
-    const nearestIndex = cards.reduce(
-      (nearest, card, index) =>
-        Math.abs(card.getBoundingClientRect().left - viewportRect.left) <
-        Math.abs(
-          cards[nearest].getBoundingClientRect().left - viewportRect.left,
-        )
-          ? index
-          : nearest,
-      0,
-    );
+    const nearestIndex = cards.reduce((nearest, card, index) => {
+      const rect = card.getBoundingClientRect();
+      const nearestRect = cards[nearest].getBoundingClientRect();
+      const cardCenter = rect.left + rect.width / 2;
+      const nearestCenter = nearestRect.left + nearestRect.width / 2;
+      return Math.abs(cardCenter - viewportCenter) <
+        Math.abs(nearestCenter - viewportCenter)
+        ? index
+        : nearest;
+    }, 0);
     const index =
       maxScroll > 0 && viewport.scrollLeft >= maxScroll - 2
         ? itemCount - 1
@@ -99,10 +100,13 @@ export function useHorizontalScrollTracker(itemCount: number) {
       );
       const target = cards[targetIndex];
       if (!target) return;
+      const viewportRect = viewport.getBoundingClientRect();
+      const targetRect = target.getBoundingClientRect();
       const offset =
-        target.getBoundingClientRect().left -
-        viewport.getBoundingClientRect().left +
-        viewport.scrollLeft;
+        targetRect.left -
+        viewportRect.left +
+        viewport.scrollLeft -
+        (viewport.clientWidth - targetRect.width) / 2;
 
       viewport.scrollTo({
         left: clamp(offset, 0, maxScroll),
