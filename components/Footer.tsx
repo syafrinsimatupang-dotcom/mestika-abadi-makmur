@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { services } from '@/lib/services';
 import { siteConfig, whatsappHref } from '@/lib/site';
+import { ArrowUpRightIcon } from '@/components/ArrowUpRightIcon';
 
 export function Footer() {
   return (
