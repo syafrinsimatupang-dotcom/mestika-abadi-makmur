@@ -131,18 +131,15 @@ test("mobile carousel arrows, dots, and native scrolling stay synchronized", asy
   await expect(carousel.locator(".carousel-count")).toHaveText("05 / 05");
 });
 
-test("FAQ expands and consultation preserves selected service and input", async ({
+test("why choose us is concise and contact planner preserves input", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
-  const faq = page.locator(".faq-list .micro-accordion").first();
-  await faq.getByRole("button").click();
-  await expect(faq.getByRole("button")).toHaveAttribute(
-    "aria-expanded",
-    "true",
-  );
-  await expect(faq.locator(".micro-accordion-content")).toBeVisible();
+  await expect(page.locator(".why-us-card")).toHaveCount(3);
+  await expect(page.locator(".why-us-card").first()).toBeVisible();
+
+  await page.goto("/kontak/");
   await page.getByRole("radio", { name: "Pintu", exact: true }).focus();
   await page.keyboard.press("ArrowRight");
   await expect(
@@ -207,3 +204,25 @@ for (const width of [390, 1440]) {
     }
   });
 }
+
+
+test("every displayed business address uses the complete address", async ({ page }) => {
+  const fullAddress =
+    "Jl. H. Buang, RT/RW 03/03, Kelurahan Cipete, Kecamatan Pinang, Kota Tangerang";
+
+  for (const route of ["/", "/kontak/"]) {
+    await page.goto(route);
+    const addresses = page.locator("[data-business-address]");
+    await expect(addresses.first()).toBeVisible();
+    const values = await addresses.allTextContents();
+    expect(values.every((value) => value.trim() === fullAddress), route).toBe(true);
+  }
+
+  for (const route of ["/", "/layanan/pintu-aluminium/"]) {
+    await page.goto(route);
+    const schema = await page
+      .locator('script[type="application/ld+json"]')
+      .allTextContents();
+    expect(schema.some((value) => value.includes(fullAddress)), route).toBe(true);
+  }
+});

@@ -14,7 +14,7 @@ export function Footer() {
           <p className="eyebrow">{siteConfig.name}</p>
           <p>Fabrikasi dan pemasangan aluminium & kaca untuk kebutuhan hunian dan komersial di Jabodetabek dan sekitarnya.</p>
           <div className="footer-contact">
-            <a href={siteConfig.mapsUrl} target="_blank" rel="noreferrer">{siteConfig.address}</a>
+            <a data-business-address href={siteConfig.mapsUrl} target="_blank" rel="noreferrer">{siteConfig.address}</a>
             <a href={whatsappHref({ sourcePath: '/' })} target="_blank" rel="noreferrer">{siteConfig.whatsappDisplay}</a>
           </div>
         </div>
@@ -40,7 +40,7 @@ export function Footer() {
       </div>
       <div className="container footer-bottom">
         <span>© {new Date().getFullYear()} {siteConfig.name}</span>
-        <span>{siteConfig.addressShort}</span>
+        <span data-business-address>{siteConfig.address}</span>
       </div>
     </footer>
   );

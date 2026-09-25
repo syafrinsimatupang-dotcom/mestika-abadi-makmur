@@ -105,7 +105,7 @@ export default function ContactPage() {
           </article>
           <article>
             <span>ALAMAT USAHA</span>
-            <strong>Cipete, Pinang</strong>
+            <strong data-business-address>{siteConfig.address}</strong>
             <a href={siteConfig.mapsUrl} target="_blank" rel="noreferrer">
               Google Maps <ArrowUpRightIcon />
             </a>
@@ -157,11 +157,11 @@ export default function ContactPage() {
           <div className="contact-refined-location-glass">
             <p className="eyebrow light">ALAMAT USAHA</p>
             <h2>
-              Cipete, Pinang.
+              Datang atau
               <br />
-              <span>Kota Tangerang.</span>
+              <span>cek lokasi.</span>
             </h2>
-            <p>{siteConfig.address}</p>
+            <p data-business-address>{siteConfig.address}</p>
 
             <div className="contact-refined-location-actions">
               <a

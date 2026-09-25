@@ -66,8 +66,7 @@ export default async function ServicePage({
       telephone: `+${siteConfig.whatsapp}`,
       address: {
         "@type": "PostalAddress",
-        streetAddress:
-          "Jl. H. Buang, RT/RW 03/03, Kelurahan Cipete, Kecamatan Pinang",
+        streetAddress: siteConfig.address,
         addressLocality: "Kota Tangerang",
         addressRegion: "Banten",
         addressCountry: "ID",
