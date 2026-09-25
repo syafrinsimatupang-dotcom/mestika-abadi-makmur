@@ -31,15 +31,31 @@ export function ServiceCollection() {
             transition={{ duration: 0.46, delay: index * 0.035, ease: [0.22, 1, 0.36, 1] }}
           >
             <Link href={`/layanan/${service.slug}/`}>
+              <div className="service-card-media" aria-hidden="true">
+                <img
+                  src={service.image}
+                  alt=""
+                  width="1200"
+                  height="900"
+                  loading="lazy"
+                  style={{ objectPosition: service.imagePosition }}
+                />
+                <div className="service-card-media-shade" />
+              </div>
+
               <div className="service-card-top">
-                <LineGlyph kind={kinds[index]} />
+                <span className="service-card-icon">
+                  <LineGlyph kind={kinds[index]} />
+                </span>
                 <span className="service-index">0{index + 1}</span>
               </div>
-              <div>
+
+              <div className="service-card-copy">
                 <p className="service-keyword">{service.keyword}</p>
                 <h3>{service.shortTitle}</h3>
                 <p>{service.description}</p>
               </div>
+
               <div className="service-link">Detail layanan <ArrowUpRightIcon /></div>
             </Link>
           </motion.article>
