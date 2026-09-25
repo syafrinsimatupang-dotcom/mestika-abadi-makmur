@@ -1,6 +1,6 @@
-# Abadi Makmur Aluminium
+# Mestika Abadi Makmur
 
-Production-oriented marketing website for **Abadi Makmur Aluminium (CV Kristian Abadi)**, focused on aluminium & glass fabrication/installation in Tangerang.
+Production-oriented marketing website for **Mestika Abadi Makmur**, focused on aluminium & glass fabrication/installation in Tangerang.
 
 ## Stack
 - Next.js 15 + React 19 + TypeScript

@@ -10,7 +10,7 @@ export function Footer() {
           <div className="footer-logo-shell">
             <img className="footer-logo" src="/brand/Logo Mestika Abadi Makmur - Pakai - Panjang.png" alt="Mestika Abadi Makmur" width="2172" height="724" />
           </div>
-          <p className="eyebrow">{siteConfig.legalName}</p>
+          <p className="eyebrow">{siteConfig.name}</p>
           <p>Fabrikasi dan pemasangan aluminium & kaca untuk kebutuhan hunian dan komersial di Jabodetabek dan sekitarnya.</p>
           <div className="footer-contact">
             <a href={siteConfig.mapsUrl} target="_blank" rel="noreferrer">{siteConfig.address}</a>
@@ -38,7 +38,7 @@ export function Footer() {
         </div>
       </div>
       <div className="container footer-bottom">
-        <span>© {new Date().getFullYear()} {siteConfig.legalName}</span>
+        <span>© {new Date().getFullYear()} {siteConfig.name}</span>
         <span>{siteConfig.addressShort}</span>
       </div>
     </footer>

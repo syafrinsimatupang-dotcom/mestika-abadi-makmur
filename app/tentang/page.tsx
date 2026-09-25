@@ -74,7 +74,7 @@ export default function AboutPage() {
               <span className="status-dot" />
               <div>
                 <small>NAMA BADAN USAHA</small>
-                <strong>{siteConfig.legalName}</strong>
+                <strong>{siteConfig.name}</strong>
               </div>
             </div>
 
