@@ -142,15 +142,17 @@ export default function HomePage() {
         <div className="container local-seo-grid">
           <Reveal className="local-seo-copy">
             <p className="eyebrow">AREA LAYANAN · JABODETABEK</p>
-            <h2>
-              Butuh aluminium atau kaca
+            <h2 className="local-seo-title">
+              Butuh pintu aluminium
+              <br />
+              dan pintu kaca
               <br />
               <span>di Jabodetabek?</span>
             </h2>
             <p>
               Kirim jenis pekerjaan dan lokasi Anda melalui WhatsApp. Kami bantu
-              arahkan kebutuhan pintu, jendela, kusen, partisi kaca, atau shower
-              box yang sesuai.
+              arahkan kebutuhan pintu aluminium, pintu kaca, jendela, kusen,
+              partisi kaca, atau shower box yang sesuai.
             </p>
           </Reveal>
           <Reveal className="keyword-panel premium-surface" delay={0.08}>

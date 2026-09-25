@@ -1660,3 +1660,175 @@ h2 > span,
     width: auto;
   }
 }
+
+
+/* ===== 2026-09-25 · Apple service-card proportion + contrast refinement ===== */
+/* Keep the landing page image-led and editorial without turning the lead door card
+   into an overlong poster. Controls use a brighter material so glyphs and numbers
+   remain legible over both light and dark photography. */
+@media (min-width: 821px) {
+  .service-bento-desktop {
+    grid-auto-rows: auto;
+    gap: 20px;
+  }
+
+  .service-bento-desktop .service-card-1 {
+    grid-column: span 7;
+    grid-row: span 1;
+  }
+
+  .service-bento-desktop .service-card-2 {
+    grid-column: span 5;
+  }
+
+  .service-bento-desktop .service-card-3 {
+    grid-column: span 5;
+  }
+
+  .service-bento-desktop .service-card-4 {
+    grid-column: span 7;
+  }
+
+  .service-bento-desktop .service-card-5 {
+    grid-column: 1 / -1;
+  }
+
+  .service-bento-desktop .service-card > a {
+    border-radius: 34px;
+    border-color: rgba(22,24,29,.065);
+    background: #fff;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.96) inset,
+      0 16px 48px rgba(22,24,29,.055);
+  }
+
+  .service-bento-desktop .service-card > a:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0,46,110,.12);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.98) inset,
+      0 24px 64px rgba(22,24,29,.09);
+  }
+
+  .service-bento-desktop .service-card-1 > a {
+    min-height: 520px;
+  }
+
+  .service-bento-desktop .service-card-2 > a,
+  .service-bento-desktop .service-card-3 > a,
+  .service-bento-desktop .service-card-4 > a {
+    min-height: 500px;
+  }
+
+  .service-bento-desktop .service-card-5 > a {
+    min-height: 420px;
+  }
+
+  .service-card-icon,
+  .service-bento-desktop .service-index,
+  .service-bento-desktop .service-card-1 .service-card-icon,
+  .service-bento-desktop .service-card-1 .service-index {
+    color: rgba(18,20,24,.94);
+    background: rgba(255,255,255,.84);
+    border-color: rgba(255,255,255,.72);
+    box-shadow:
+      0 8px 28px rgba(0,0,0,.11),
+      inset 0 1px 0 rgba(255,255,255,.96);
+    backdrop-filter: blur(22px) saturate(200%);
+    -webkit-backdrop-filter: blur(22px) saturate(200%);
+  }
+
+  .service-card-icon .line-glyph {
+    color: currentColor !important;
+    stroke-width: 1.35px;
+  }
+
+  .service-bento-desktop .service-index {
+    font-weight: 720;
+    opacity: 1;
+    text-shadow: none;
+  }
+
+  .service-bento-desktop .service-card-1 .service-card-copy {
+    bottom: 76px;
+    padding: 32px 34px 26px;
+  }
+
+  .service-bento-desktop .service-card-1 .service-link {
+    left: 34px;
+    right: 34px;
+  }
+
+  .service-bento-desktop .service-card-5 .service-card-media {
+    min-height: 410px;
+  }
+}
+
+@media (min-width: 821px) and (max-width: 1120px) {
+  .service-bento-desktop .service-card-1 > a {
+    min-height: 500px;
+  }
+
+  .service-bento-desktop .service-card-2 > a,
+  .service-bento-desktop .service-card-3 > a,
+  .service-bento-desktop .service-card-4 > a {
+    min-height: 460px;
+  }
+
+  .service-bento-desktop .service-card-5 > a {
+    min-height: 0;
+  }
+}
+
+/* Mobile parity: the number badge stays readable even on bright photography. */
+@media (max-width: 820px) {
+  .service-mobile-number {
+    min-width: 44px;
+    min-height: 44px;
+    height: 44px;
+    padding: 0 12px;
+    color: rgba(18,20,24,.95);
+    background: rgba(255,255,255,.86);
+    border-color: rgba(255,255,255,.74);
+    box-shadow:
+      0 8px 26px rgba(0,0,0,.12),
+      inset 0 1px 0 rgba(255,255,255,.96);
+    backdrop-filter: blur(20px) saturate(200%);
+    -webkit-backdrop-filter: blur(20px) saturate(200%);
+    font-weight: 720;
+    opacity: 1;
+  }
+
+  .service-mobile-heading .line-glyph {
+    color: var(--primary);
+    stroke-width: 1.35px;
+  }
+}
+
+/* Local service headline: Apple-like large type with deliberate line breaks,
+   while staying compact enough for narrow phones. */
+.local-seo-title {
+  max-width: 11.5ch;
+  font-size: clamp(50px, 5.35vw, 76px);
+  line-height: .94;
+  letter-spacing: -.068em;
+  text-wrap: balance;
+}
+
+@media (max-width: 820px) {
+  .local-seo-title {
+    max-width: 12ch;
+    font-size: clamp(42px, 10vw, 56px);
+    line-height: .96;
+    letter-spacing: -.064em;
+  }
+}
+
+@media (max-width: 580px) {
+  .local-seo-title {
+    max-width: 100%;
+    font-size: clamp(36px, 10.8vw, 46px);
+    line-height: .98;
+    letter-spacing: -.06em;
+  }
+}

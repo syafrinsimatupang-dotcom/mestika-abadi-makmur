@@ -87,9 +87,9 @@ export const services: Service[] = [
     metaDescription:
       'Jasa kusen aluminium area Jabodetabek untuk pintu dan jendela. Fabrikasi berdasarkan ukuran lokasi, kebutuhan bukaan dan tampilan bangunan.',
     image:
-      'https://images.pexels.com/photos/7031607/pexels-photo-7031607.jpeg?auto=compress&cs=tinysrgb&w=1800',
-    imageAlt: 'Referensi fasad rumah modern dengan kusen, pintu kaca, dan jendela lebar',
-    imagePosition: '50% 45%',
+      'https://images.pexels.com/photos/5768188/pexels-photo-5768188.jpeg?auto=compress&cs=tinysrgb&w=1800',
+    imageAlt: 'Proses pemasangan kusen jendela pada hunian menggunakan alat kerja',
+    imagePosition: '50% 52%',
     highlight: 'Presisi · Rapi · Adaptif',
     benefits: [
       'Dibuat mengikuti kebutuhan ukuran aktual',
