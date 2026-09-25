@@ -10,9 +10,9 @@ const steps = [
     title: "Kirim kebutuhan",
     body: "Jenis pekerjaan, lokasi, foto kondisi bila ada, serta ukuran perkiraan.",
     image:
-      "https://images.pexels.com/photos/7031607/pexels-photo-7031607.jpeg?auto=compress&cs=tinysrgb&w=1400",
-    alt: "Referensi rumah modern dengan bukaan kaca untuk tahap survey dan pengukuran",
-    imagePosition: "50% 44%",
+      "https://images.pexels.com/photos/5768188/pexels-photo-5768188.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    alt: "Referensi proses pengerjaan kusen aluminium dengan alat kerja sebagai konteks awal kebutuhan proyek",
+    imagePosition: "50% 52%",
   },
   {
     index: "02",
