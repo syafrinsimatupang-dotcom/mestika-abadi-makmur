@@ -30,9 +30,23 @@ export function TrustMarquee() {
   return (
     <section
       className="trust-rail material-brand-marquee"
-      aria-label="Merek material aluminium yang digunakan"
+      aria-labelledby="material-brand-title"
     >
-      <div className="trust-marquee-viewport">
+      <div className="container material-brand-context">
+        <p className="eyebrow">MATERIAL PILIHAN</p>
+        <div className="material-brand-context-row">
+          <h2 id="material-brand-title">Material dari brand ternama.</h2>
+          <p>
+            Pilihan profil aluminium dan material pendukung disesuaikan dengan
+            kebutuhan, fungsi, dan karakter proyek.
+          </p>
+        </div>
+      </div>
+
+      <div
+        className="trust-marquee-viewport"
+        aria-label="Brand material aluminium"
+      >
         <div className="trust-marquee-track">
           <BrandGroup />
           <BrandGroup hidden />

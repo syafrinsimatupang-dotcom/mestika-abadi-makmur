@@ -3244,3 +3244,197 @@ h2 > span,
     grid-auto-columns: 88%;
   }
 }
+
+
+/* ===== 2026-09-25 · Apple contextual material marquee ===== */
+.material-brand-marquee {
+  padding: clamp(72px, 7vw, 104px) 0 clamp(30px, 3.4vw, 48px) !important;
+  border: 0 !important;
+  background:
+    linear-gradient(180deg, #fff 0%, #fff 72%, #fbfbfc 100%) !important;
+}
+
+.material-brand-context {
+  margin-bottom: clamp(34px, 4vw, 54px);
+}
+
+.material-brand-context > .eyebrow {
+  margin: 0 0 14px;
+  color: rgba(22,24,29,.46) !important;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+}
+
+.material-brand-context-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, .46fr);
+  gap: clamp(40px, 7vw, 110px);
+  align-items: end;
+}
+
+.material-brand-context h2 {
+  margin: 0;
+  max-width: 12ch;
+  font-family: var(--font-jakarta), var(--font-geist), sans-serif;
+  color: var(--secondary);
+  font-size: clamp(42px, 4.2vw, 62px);
+  line-height: .96;
+  letter-spacing: -.062em;
+  font-weight: 610;
+  text-wrap: balance;
+}
+
+.material-brand-context-row > p {
+  margin: 0 0 3px;
+  max-width: 39ch;
+  color: rgba(22,24,29,.55);
+  font-size: 14px;
+  line-height: 1.64;
+}
+
+.material-brand-marquee .trust-marquee-viewport {
+  padding-block: 8px;
+  border-top: 1px solid rgba(22,24,29,.055);
+  border-bottom: 1px solid rgba(22,24,29,.055);
+  background: rgba(255,255,255,.72);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 5%,
+    #000 95%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 5%,
+    #000 95%,
+    transparent 100%
+  );
+}
+
+.material-brand-marquee .trust-marquee-track {
+  animation-duration: 36s;
+}
+
+.material-brand-marquee .trust-marquee-group {
+  gap: clamp(62px, 6vw, 104px);
+  min-height: 104px;
+  padding-right: clamp(62px, 6vw, 104px);
+}
+
+.material-brand-marquee .trust-marquee-item {
+  width: 168px;
+  height: 74px;
+}
+
+.material-brand-logo {
+  width: 168px;
+  height: 74px;
+  filter: grayscale(1) saturate(.08) contrast(.94);
+  opacity: .48;
+  transition:
+    filter .32s cubic-bezier(.22,1,.36,1),
+    opacity .32s ease,
+    transform .32s cubic-bezier(.22,1,.36,1);
+}
+
+.material-brand-marquee .trust-marquee-item:hover .material-brand-logo {
+  filter: grayscale(0) saturate(.78) contrast(1);
+  opacity: .92;
+  transform: scale(1.035);
+}
+
+@media (max-width: 820px) {
+  .material-brand-marquee {
+    padding: 58px 0 24px !important;
+  }
+
+  .material-brand-context {
+    margin-bottom: 28px;
+  }
+
+  .material-brand-context > .eyebrow {
+    margin-bottom: 11px;
+    font-size: 9px;
+  }
+
+  .material-brand-context-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .material-brand-context h2 {
+    max-width: 11ch;
+    font-size: clamp(34px, 9.2vw, 46px);
+    line-height: .97;
+    letter-spacing: -.058em;
+  }
+
+  .material-brand-context-row > p {
+    max-width: 38ch;
+    font-size: 12px;
+    line-height: 1.52;
+  }
+
+  .material-brand-marquee .trust-marquee-viewport {
+    padding-block: 4px;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 8%,
+      #000 92%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 8%,
+      #000 92%,
+      transparent 100%
+    );
+  }
+
+  .material-brand-marquee .trust-marquee-track {
+    animation-duration: 30s;
+  }
+
+  .material-brand-marquee .trust-marquee-group {
+    gap: 34px;
+    min-height: 80px;
+    padding-right: 34px;
+  }
+
+  .material-brand-marquee .trust-marquee-item,
+  .material-brand-logo {
+    width: 124px;
+    height: 56px;
+  }
+}
+
+@media (max-width: 420px) {
+  .material-brand-marquee {
+    padding-top: 52px !important;
+  }
+
+  .material-brand-context h2 {
+    font-size: clamp(32px, 8.8vw, 40px);
+  }
+
+  .material-brand-context-row > p {
+    max-width: 34ch;
+  }
+
+  .material-brand-marquee .trust-marquee-group {
+    gap: 28px;
+    min-height: 74px;
+    padding-right: 28px;
+  }
+
+  .material-brand-marquee .trust-marquee-item,
+  .material-brand-logo {
+    width: 114px;
+    height: 52px;
+  }
+}
