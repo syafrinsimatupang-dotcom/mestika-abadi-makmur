@@ -12,11 +12,29 @@ export function RelatedServicesCollection({
 }: {
   currentSlug: string;
 }) {
+  const family = currentSlug.split("-")[0];
   const items = services
     .filter((item) => item.slug !== currentSlug)
+    .sort((a, b) => Number(b.slug.startsWith(family)) - Number(a.slug.startsWith(family)))
     .slice(0, 4);
+  const totalSlides = items.length + 1;
   const { viewportRef, activeIndex, progress, scrollToIndex, scrollByItem } =
-    useHorizontalScrollTracker(items.length);
+    useHorizontalScrollTracker(totalSlides);
+
+  const catalogCard = () => (
+    <Link href="/layanan/" aria-label="Lihat semua layanan dan produk">
+      <span className="related-cta-eyebrow">
+        {String(totalSlides).padStart(2, "0")} / {String(services.length).padStart(2, "0")} PILIHAN
+      </span>
+      <div className="related-cta-content">
+        <h3>Lihat semua layanan dan produk.</h3>
+        <p>Temukan pilihan pintu, jendela, partisi kaca, dan kaca shower yang sesuai.</p>
+      </div>
+      <span className="related-cta-action">
+        Jelajahi katalog <ArrowUpRightIcon />
+      </span>
+    </Link>
+  );
 
   const card = (item: (typeof items)[number], index: number) => (
     <Link href={`/layanan/${item.slug}/`}>
@@ -29,7 +47,7 @@ export function RelatedServicesCollection({
           loading="lazy"
           style={{ objectPosition: item.imagePosition }}
         />
-        <span className="reference-badge">REFERENSI PEKERJAAN</span>
+        <span className="reference-badge">FOTO PRODUK</span>
       </div>
       <div className="related-card-body">
         <span className="related-card-index">0{index + 1}</span>
@@ -55,6 +73,15 @@ export function RelatedServicesCollection({
             {card(item, index)}
           </motion.article>
         ))}
+        <motion.article
+          className="related-card related-card-cta"
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.4, delay: 0.16 }}
+        >
+          {catalogCard()}
+        </motion.article>
       </div>
 
       <div className="related-mobile-carousel">
@@ -94,11 +121,14 @@ export function RelatedServicesCollection({
                 {card(item, index)}
               </article>
             ))}
+            <article className="related-card related-mobile-item related-card-cta" data-carousel-item>
+              {catalogCard()}
+            </article>
           </div>
         </div>
         <div className="carousel-pagination related-mobile-pagination">
           <div className="carousel-dots">
-            {items.map((_, index) => (
+            {Array.from({ length: totalSlides }, (_, index) => (
               <button
                 type="button"
                 key={index}
@@ -118,7 +148,7 @@ export function RelatedServicesCollection({
           </div>
           <span className="carousel-count">
             {String(activeIndex + 1).padStart(2, "0")} /{" "}
-            {String(items.length).padStart(2, "0")}
+            {String(totalSlides).padStart(2, "0")}
           </span>
         </div>
       </div>

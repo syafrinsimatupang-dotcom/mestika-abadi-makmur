@@ -5,9 +5,16 @@ import { motion } from 'framer-motion';
 import { LineGlyph } from '@/components/LineGlyph';
 import { ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
 import { useHorizontalScrollTracker } from '@/components/useHorizontalScrollTracker';
-import { services } from '@/lib/services';
+import { serviceBySlug } from '@/lib/services';
 
-const kinds = ['door', 'window', 'frame', 'partition', 'shower'] as const;
+const kinds = ['door', 'door', 'window', 'partition', 'shower'] as const;
+const featuredServices = [
+  serviceBySlug['pintu-acp'],
+  serviceBySlug['pintu-kaca-aluminium'],
+  serviceBySlug['jendela-sliding-door'],
+  serviceBySlug['partisi-kaca'],
+  serviceBySlug['kaca-shower-kamar-mandi'],
+];
 
 export function ServiceCollection() {
   const {
@@ -16,12 +23,12 @@ export function ServiceCollection() {
     progress,
     scrollToIndex,
     scrollByItem,
-  } = useHorizontalScrollTracker(services.length);
+  } = useHorizontalScrollTracker(featuredServices.length);
 
   return (
     <>
       <div className="service-bento service-bento-desktop">
-        {services.map((service, index) => (
+        {featuredServices.map((service, index) => (
           <motion.article
             key={service.slug}
             className={`service-card service-card-${index + 1}`}
@@ -81,7 +88,7 @@ export function ServiceCollection() {
           aria-label="Layanan dan produk — scroll horizontal"
         >
           <div className="service-mobile-track">
-            {services.map((service, index) => (
+            {featuredServices.map((service, index) => (
               <article className="service-mobile-card" data-carousel-item key={service.slug}>
                 <Link href={`/layanan/${service.slug}/`}>
                   <div className="service-mobile-image">
@@ -113,7 +120,7 @@ export function ServiceCollection() {
 
         <div className="carousel-pagination service-mobile-pagination" aria-label="Posisi layanan">
           <div className="carousel-dots">
-            {services.map((_, index) => (
+            {featuredServices.map((_, index) => (
               <button
                 key={index}
                 className={index === activeIndex ? 'active' : ''}
@@ -133,7 +140,7 @@ export function ServiceCollection() {
           </div>
 
           <span className="carousel-count">
-            {String(activeIndex + 1).padStart(2, '0')} / {String(services.length).padStart(2, '0')}
+            {String(activeIndex + 1).padStart(2, '0')} / {String(featuredServices.length).padStart(2, '0')}
           </span>
         </div>
       </div>

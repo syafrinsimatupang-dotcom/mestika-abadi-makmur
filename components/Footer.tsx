@@ -1,9 +1,18 @@
 import Link from 'next/link';
-import { services } from '@/lib/services';
+import { serviceBySlug } from '@/lib/services';
 import { siteConfig, whatsappHref } from '@/lib/site';
 import { ArrowUpRightIcon } from '@/components/ArrowUpRightIcon';
 
 export function Footer() {
+  const footerServices = [
+    'pintu-acp',
+    'pintu-kaca-aluminium',
+    'pintu-sliding-door',
+    'jendela-sliding-door',
+    'partisi-kaca',
+    'kaca-shower-kamar-mandi',
+  ].map((slug) => serviceBySlug[slug]);
+
   return (
     <footer className="footer dark-surface" data-nav-theme="dark">
       <div className="container footer-grid">
@@ -22,7 +31,7 @@ export function Footer() {
           <p className="footer-label">Layanan dan Produk</p>
           <div className="footer-links">
             <Link href="/layanan/">Semua layanan dan produk</Link>
-            {services.map((service) => (
+            {footerServices.map((service) => (
               <Link key={service.slug} href={`/layanan/${service.slug}/`}>{service.shortTitle}</Link>
             ))}
           </div>

@@ -1,13 +1,12 @@
 import { expect, test } from "@playwright/test";
+import { services } from "../lib/services";
+import { existsSync, readdirSync } from "node:fs";
+import { resolve } from "node:path";
 
 const routes = [
   "/",
   "/layanan/",
-  "/layanan/pintu-aluminium/",
-  "/layanan/jendela-aluminium/",
-  "/layanan/kusen-aluminium/",
-  "/layanan/partisi-kaca/",
-  "/layanan/shower-box/",
+  ...services.map((service) => `/layanan/${service.slug}/`),
   "/portofolio/",
   "/tentang/",
   "/kontak/",
@@ -19,6 +18,21 @@ const sizes = [
   { width: 768, height: 1024 },
   { width: 1440, height: 900 },
 ];
+
+test("service catalog matches every product photo folder", () => {
+  const photoRoot = resolve(process.cwd(), "public", "foto-produk");
+  const folders = readdirSync(photoRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && entry.name !== "VIDEO")
+    .map((entry) => entry.name)
+    .sort();
+  expect(services.map((service) => service.shortTitle).sort()).toEqual(folders);
+  for (const service of services) {
+    expect(
+      existsSync(resolve(process.cwd(), "public", decodeURIComponent(service.image).slice(1))),
+      service.shortTitle,
+    ).toBe(true);
+  }
+});
 
 for (const viewport of sizes) {
   test(`all routes fit and expose usable controls at ${viewport.width}px`, async ({
@@ -32,6 +46,9 @@ for (const viewport of sizes) {
       expect(response?.status(), route).toBe(200);
       await expect(page.locator("h1")).toHaveCount(1);
       await expect(page.locator("h1")).toBeVisible();
+      if (route !== "/portofolio/") {
+        await expect(page.locator("video")).toHaveCount(0);
+      }
       expect(
         await page.locator('link[rel="canonical"]').getAttribute("href"),
       ).toContain(route);
@@ -113,7 +130,7 @@ test("mobile menu closes on Escape and restores focus", async ({ page }) => {
   ).toHaveCount(0);
 });
 
-test("mobile carousel arrows, dots, and native scrolling stay synchronized", async ({
+test("mobile carousel arrows and native scrolling stay synchronized", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
@@ -121,7 +138,9 @@ test("mobile carousel arrows, dots, and native scrolling stay synchronized", asy
   const carousel = page.locator(".service-mobile-carousel");
   await carousel.getByRole("button", { name: "Layanan berikutnya" }).click();
   await expect(carousel.locator(".carousel-count")).toHaveText("02 / 05");
-  await carousel.getByRole("button", { name: "Buka layanan 4" }).click();
+  await carousel.getByRole("button", { name: "Layanan berikutnya" }).click();
+  await expect(carousel.locator(".carousel-count")).toHaveText("03 / 05");
+  await carousel.getByRole("button", { name: "Layanan berikutnya" }).click();
   await expect(carousel.locator(".carousel-count")).toHaveText("04 / 05");
   await carousel
     .locator(".native-horizontal-carousel")
@@ -129,6 +148,50 @@ test("mobile carousel arrows, dots, and native scrolling stay synchronized", asy
       element.scrollTo({ left: element.scrollWidth, behavior: "instant" }),
     );
   await expect(carousel.locator(".carousel-count")).toHaveText("05 / 05");
+});
+
+test("portfolio lists every product reference and opens its detail page", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/portofolio/");
+  const cards = page.locator(".portfolio-gallery-card");
+  await expect(cards).toHaveCount(services.length);
+  await expect(page.locator(".portfolio-video-card video")).toHaveCount(4);
+  await page.getByRole("link", { name: "Lihat 4 video" }).click();
+  await expect(page).toHaveURL(/#galeri-video$/);
+  await expect(page.locator("#portfolio-video-title")).toBeInViewport();
+  for (const service of services) {
+    await expect(
+      page.getByRole("link", { name: `Lihat detail ${service.shortTitle}`, exact: true }),
+    ).toHaveAttribute("href", `/layanan/${service.slug}/`);
+  }
+  await cards.first().click();
+  await expect(page).toHaveURL(/\/layanan\/pintu-acp\/$/);
+});
+
+test("mobile service photos stay above their card text", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  const overlap = await page.locator(".service-mobile-card").evaluateAll((cards) =>
+    cards.some((card) => {
+      const image = card.querySelector(".service-mobile-image")!.getBoundingClientRect();
+      const body = card.querySelector(".service-mobile-body")!.getBoundingClientRect();
+      return image.bottom > body.top + 1;
+    }),
+  );
+  expect(overlap).toBe(false);
+});
+
+test("related services end with a link to the full catalog", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/layanan/pintu-acp/");
+  const carousel = page.locator(".related-mobile-carousel");
+  await expect(carousel.locator("[data-carousel-item]")).toHaveCount(5);
+  await carousel.locator(".related-mobile-viewport").evaluate((element) =>
+    element.scrollTo({ left: element.scrollWidth, behavior: "instant" }),
+  );
+  await expect(carousel.locator(".carousel-count")).toHaveText("05 / 05");
+  await carousel.getByRole("link", { name: "Lihat semua layanan dan produk" }).click();
+  await expect(page).toHaveURL(/\/layanan\/$/);
 });
 
 test("why choose us is concise and contact planner preserves input", async ({
@@ -140,11 +203,10 @@ test("why choose us is concise and contact planner preserves input", async ({
   await expect(page.locator(".why-us-mobile-viewport .why-us-card-v2").first()).toBeVisible();
 
   await page.goto("/kontak/");
-  await page.getByRole("radio", { name: "Pintu", exact: true }).focus();
-  await page.keyboard.press("ArrowRight");
-  await expect(
-    page.getByRole("radio", { name: "Jendela", exact: true }),
-  ).toBeChecked();
+  const product = page.getByRole("combobox", { name: "Layanan dan Produk" });
+  await expect(product).toHaveValue("Pintu ACP");
+  await product.selectOption("Pintu Kaca Aluminium");
+  await expect(product).toHaveValue("Pintu Kaca Aluminium");
   await page.getByRole("textbox", { name: "Lokasi proyek" }).fill("Tangerang");
   await page
     .getByRole("textbox", { name: "Catatan singkat" })
@@ -153,7 +215,7 @@ test("why choose us is concise and contact planner preserves input", async ({
     .getByRole("link", { name: "Kirim ke WhatsApp" })
     .getAttribute("href");
   const message = new URL(href!).searchParams.get("text");
-  expect(message).toContain("Jendela Aluminium");
+  expect(message).toContain("Pintu Kaca Aluminium");
   expect(message).toContain("Tangerang");
   expect(message).toContain("120 x 180");
 });
@@ -183,7 +245,7 @@ for (const width of [390, 1440]) {
     for (const route of [
       "/",
       "/layanan/",
-      "/layanan/pintu-aluminium/",
+      "/layanan/pintu-acp/",
       "/portofolio/",
       "/tentang/",
       "/kontak/",
@@ -218,11 +280,32 @@ test("every displayed business address uses the complete address", async ({ page
     expect(values.every((value) => value.trim() === fullAddress), route).toBe(true);
   }
 
-  for (const route of ["/", "/layanan/pintu-aluminium/"]) {
+  for (const route of ["/", "/layanan/pintu-acp/"]) {
     await page.goto(route);
     const schema = await page
       .locator('script[type="application/ld+json"]')
       .allTextContents();
     expect(schema.some((value) => value.includes(fullAddress)), route).toBe(true);
   }
+});
+
+test("mobile product catalog shows all products and filters by type", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/layanan/");
+
+  const catalog = page.locator(".services-refined-mobile");
+  const tiles = catalog.locator(".services-mobile-tile");
+  await expect(tiles).toHaveCount(18);
+  await expect(catalog.getByText("18 produk")).toBeVisible();
+
+  for (const [label, count] of [["Pintu", 10], ["Jendela", 3], ["Partisi", 4], ["Shower", 1]] as const) {
+    await catalog.getByRole("button", { name: new RegExp(`^${label}\\s*${count}$`) }).click();
+    await expect(tiles).toHaveCount(count);
+    await expect(catalog.getByText(`${count} produk`)).toBeVisible();
+  }
+
+  await catalog.getByRole("button", { name: /^Semua\s*18$/ }).click();
+  await expect(tiles).toHaveCount(18);
+  await tiles.last().click();
+  await expect(page).toHaveURL(/\/layanan\/[^/]+\/$/);
 });

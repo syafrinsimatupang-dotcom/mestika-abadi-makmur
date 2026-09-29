@@ -31,11 +31,11 @@ export const metadata: Metadata = {
   applicationName: siteConfig.name,
   category: "Construction",
   keywords: [
-    "pintu aluminium Jabodetabek",
-    "jendela aluminium Jabodetabek",
-    "kusen aluminium Jabodetabek",
+    "pintu ACP Jabodetabek",
+    "pintu kaca aluminium Jabodetabek",
+    "jendela casement Jabodetabek",
     "partisi kaca Jabodetabek",
-    "shower box Jabodetabek",
+    "kaca shower kamar mandi Jabodetabek",
   ],
   icons: {
     icon: [

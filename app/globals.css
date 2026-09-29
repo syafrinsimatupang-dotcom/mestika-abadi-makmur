@@ -374,9 +374,6 @@ main { min-height: 60vh; }
 .portfolio-page-hero { background: var(--secondary); color: #fff; min-height: 620px; display: flex; align-items: center; padding-bottom: 70px; }
 .portfolio-page-hero h1 span { color: rgba(255,255,255,.24); }
 .portfolio-title-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 80px; align-items: flex-end; }
-.portfolio-disclaimer { color: var(--secondary); border-radius: 24px; padding: 24px; }
-.portfolio-disclaimer > span { font-size: 9px; letter-spacing: .12em; color: var(--primary); font-weight: 700; }
-.portfolio-disclaimer p { margin: 10px 0 0; color: var(--muted); line-height: 1.68; font-size: 13px; }
 .portfolio-full-section { padding-top: 35px; }
 .portfolio-upload-note { background: #fff; }
 .upload-note-grid { display: grid; grid-template-columns: .82fr 1.18fr; gap: 80px; align-items: flex-start; }
@@ -519,7 +516,6 @@ main { min-height: 60vh; }
   .about-principle { padding: 28px; }
   .principle-card { min-height: 320px; }
   .portfolio-page-hero { min-height: 720px; }
-  .portfolio-disclaimer { padding: 20px; }
   .contact-facts > div { grid-template-columns: 88px 1fr; }
   .location-card { padding: 24px; border-radius: 30px; }
   .location-visual { min-height: 330px; padding: 22px; }
@@ -2250,20 +2246,6 @@ main { min-height: 60vh; }
 .dark-surface .section-heading h2 span,
 .dark-surface h1 span {
   color: rgba(255,255,255,.28);
-}
-
-.portfolio-page-hero .portfolio-disclaimer {
-  color: #fff;
-  background: rgba(255,255,255,.05);
-  border-color: rgba(255,255,255,.10);
-}
-
-.portfolio-page-hero .portfolio-disclaimer > span {
-  color: var(--primary);
-}
-
-.portfolio-page-hero .portfolio-disclaimer p {
-  color: rgba(255,255,255,.70);
 }
 
 /* Embla: retain arrows but make pointer/touch/trackpad drag obvious and usable. */

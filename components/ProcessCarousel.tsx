@@ -3,34 +3,32 @@
 import { motion } from "framer-motion";
 import { LineGlyph } from "@/components/LineGlyph";
 import { useHorizontalScrollTracker } from "@/components/useHorizontalScrollTracker";
+import { services } from "@/lib/services";
 
 const steps = [
   {
     index: "01",
     title: "Kirim kebutuhan",
     body: "Jenis pekerjaan, lokasi, foto kondisi bila ada, serta ukuran perkiraan.",
-    image:
-      "https://images.pexels.com/photos/5768188/pexels-photo-5768188.jpeg?auto=compress&cs=tinysrgb&w=1400",
-    alt: "Referensi proses pengerjaan kusen aluminium dengan alat kerja sebagai konteks awal kebutuhan proyek",
-    imagePosition: "50% 52%",
+    image: services[1].image,
+    alt: services[1].imageAlt,
+    imagePosition: "50% 40%",
   },
   {
     index: "02",
     title: "Pilih sistem & material",
     body: "Bahas jenis bukaan, frame, kaca, serta penyesuaian yang dibutuhkan di lokasi.",
-    image:
-      "https://images.pexels.com/photos/17168858/pexels-photo-17168858/free-photo-of-modern-design-of-room.jpeg?auto=compress&cs=tinysrgb&w=1400",
-    alt: "Referensi ruang modern untuk pembahasan konfigurasi bukaan dan material",
-    imagePosition: "61% 50%",
+    image: services[6].image,
+    alt: services[6].imageAlt,
+    imagePosition: "50% 40%",
   },
   {
     index: "03",
     title: "Fabrikasi & pasang",
     body: "Pekerjaan dilanjutkan mengikuti detail yang telah disepakati.",
-    image:
-      "https://images.pexels.com/photos/34048291/pexels-photo-34048291.jpeg?auto=compress&cs=tinysrgb&w=1400",
-    alt: "Referensi pekerjaan pemasangan panel kaca pada bangunan modern dengan pekerja terlihat dari jarak jauh",
-    imagePosition: "62% 48%",
+    image: services[8].image,
+    alt: services[8].imageAlt,
+    imagePosition: "50% 40%",
   },
 ];
 
@@ -55,7 +53,7 @@ function StepCard({
           loading="lazy"
           style={{ objectPosition: step.imagePosition }}
         />
-        <span className="reference-badge">REFERENSI PEKERJAAN</span>
+        <span className="reference-badge">FOTO PRODUK</span>
       </div>
       <div className="process-slide-copy">
         <span>{step.index}</span>

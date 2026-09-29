@@ -13,10 +13,7 @@ export function PortfolioCarousel({ compact = false }: { compact?: boolean }) {
   return (
     <div className="carousel-wrap">
       <div className="carousel-toolbar">
-        <p className="carousel-note">
-          Foto berikut merupakan referensi jenis pekerjaan yang kami layani,
-          bukan dokumentasi proyek Mestika Abadi Makmur.
-        </p>
+        <p className="carousel-note">Geser untuk melihat foto produk lainnya.</p>
         <div className="carousel-controls" aria-label="Kontrol carousel">
           <button onClick={() => scrollByItem(-1)} aria-label="Geser ke kiri">
             <LineGlyph kind="navLeft" />
@@ -57,7 +54,7 @@ export function PortfolioCarousel({ compact = false }: { compact?: boolean }) {
                   loading="lazy"
                   style={{ objectPosition: item.imagePosition }}
                 />
-                <span className="reference-badge">REFERENSI PEKERJAAN</span>
+                <span className="reference-badge">FOTO PRODUK</span>
               </div>
               <div className="project-meta">
                 <div>

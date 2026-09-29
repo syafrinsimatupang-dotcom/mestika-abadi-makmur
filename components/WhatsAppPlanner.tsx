@@ -2,16 +2,12 @@
 
 import { useId, useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
 import { whatsappHref } from "@/lib/site";
+import { services } from "@/lib/services";
 import { ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
 
 const options = [
-  { label: "Pintu", value: "Pintu Aluminium" },
-  { label: "Jendela", value: "Jendela Aluminium" },
-  { label: "Kusen", value: "Kusen Aluminium" },
-  { label: "Partisi", value: "Partisi Kaca" },
-  { label: "Shower", value: "Shower Box" },
+  ...services.map((item) => ({ label: item.shortTitle, value: item.shortTitle })),
   { label: "Lainnya", value: "Lainnya" },
 ];
 
@@ -20,7 +16,7 @@ export function WhatsAppPlanner({
 }: {
   defaultService?: string;
 }) {
-  const plannerId = useId();
+  const serviceId = useId();
   const pathname = usePathname();
   const [service, setService] = useState(defaultService || options[0].value);
   const [location, setLocation] = useState("");
@@ -50,60 +46,22 @@ export function WhatsAppPlanner({
       </div>
 
       <div className="planner-service-group">
-        <span className="planner-field-label">Layanan dan Produk</span>
-        <div
-          className="planner-segmented"
-          role="radiogroup"
-          aria-label="Pilih layanan atau produk"
-        >
-          {options.map((option) => {
-            const active = service === option.value;
-            return (
-              <button
-                type="button"
-                role="radio"
-                aria-checked={active}
-                tabIndex={active ? 0 : -1}
-                onKeyDown={(event) => {
-                  const current = options.findIndex(
-                    (item) => item.value === service,
-                  );
-                  const direction =
-                    event.key === "ArrowRight" || event.key === "ArrowDown"
-                      ? 1
-                      : event.key === "ArrowLeft" || event.key === "ArrowUp"
-                        ? -1
-                        : 0;
-                  if (!direction && event.key !== "Home" && event.key !== "End")
-                    return;
-                  event.preventDefault();
-                  const next =
-                    event.key === "Home"
-                      ? 0
-                      : event.key === "End"
-                        ? options.length - 1
-                        : (current + direction + options.length) %
-                          options.length;
-                  setService(options[next].value);
-                  event.currentTarget.parentElement
-                    ?.querySelectorAll<HTMLButtonElement>("button")
-                    [next]?.focus();
-                }}
-                className={active ? "active" : ""}
-                key={option.value}
-                onClick={() => setService(option.value)}
-              >
-                {active ? (
-                  <motion.span
-                    layoutId={`${plannerId}-service-pill`}
-                    className="planner-segmented-pill"
-                    transition={{ type: "spring", stiffness: 420, damping: 34 }}
-                  />
-                ) : null}
-                <span className="planner-segmented-label">{option.label}</span>
-              </button>
-            );
-          })}
+        <label className="planner-field-label" htmlFor={serviceId}>
+          Layanan dan Produk
+        </label>
+        <div className="planner-service-select">
+          <select
+            id={serviceId}
+            name="service"
+            value={service}
+            onChange={(event) => setService(event.target.value)}
+          >
+            {options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 

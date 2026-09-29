@@ -148,7 +148,7 @@ export default async function ServicePage({
               fetchPriority="high"
               style={{ objectPosition: service.imagePosition }}
             />
-            <span className="reference-badge">REFERENSI PEKERJAAN</span>
+            <span className="reference-badge">FOTO PRODUK</span>
           </Reveal>
         </div>
       </section>

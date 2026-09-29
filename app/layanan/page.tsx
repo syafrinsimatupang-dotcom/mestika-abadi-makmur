@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { ServicesPageCatalog } from "@/components/ServicesPageCatalog";
 import { ArrowDownIcon, ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
 import { whatsappHref } from "@/lib/site";
+import { services } from "@/lib/services";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/layanan/" },
   title: "Layanan dan Produk Aluminium Kaca Jabodetabek",
   description:
-    "Layanan dan produk Mestika Abadi Makmur untuk pintu aluminium, jendela aluminium, kusen aluminium, partisi kaca, shower box, sliding, frameless glass dan kebutuhan aluminium kaca di Jabodetabek dan sekitarnya.",
+    `${services.length} produk dan layanan Mestika Abadi Makmur: pintu aluminium dan kaca, jendela sliding dan casement, partisi kaca, serta kaca shower kamar mandi di Jabodetabek.`,
 };
 
 const heroImage =
@@ -32,7 +33,7 @@ export default function ServicesPage() {
               <span>untuk kebutuhan ruang Anda.</span>
             </h1>
             <p>
-              Pilih pintu, jendela, kusen, partisi kaca, atau shower box. Kami
+              Pilih dari {services.length} jenis pintu, jendela, partisi kaca, dan kaca shower. Kami
               bantu dari pengukuran, pemilihan sistem, hingga pemasangan.
             </p>
 
@@ -56,7 +57,7 @@ export default function ServicesPage() {
             >
               <span>Pintu</span>
               <span>Jendela</span>
-              <span>Kusen</span>
+              <span>ACP</span>
               <span>Partisi</span>
               <span>Shower</span>
             </div>
@@ -102,9 +103,9 @@ export default function ServicesPage() {
           <div className="services-refined-cta-glass">
             <p className="eyebrow light">BUTUH KONFIGURASI LAIN?</p>
             <h2>
-              Sliding, frameless,
+              Pilihan ukuran,
               <br />
-              <span>spandrel, atau custom.</span>
+              <span>model, dan pemasangan.</span>
             </h2>
             <p>
               Kirim kebutuhan dan foto kondisi lokasi. Kami bantu arahkan

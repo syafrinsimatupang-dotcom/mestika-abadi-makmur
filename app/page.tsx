@@ -90,7 +90,7 @@ export default function HomePage() {
         <div className="container">
           <Reveal className="section-heading split-heading portfolio-heading">
             <div>
-              <p className="eyebrow">REFERENSI PEKERJAAN</p>
+              <p className="eyebrow">GALERI FOTO</p>
               <h2>
                 Lihat jenis pekerjaan
                 <br />

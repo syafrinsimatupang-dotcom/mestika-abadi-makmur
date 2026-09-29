@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
-import { PortfolioCarousel } from "@/components/PortfolioCarousel";
+import { PortfolioGallery } from "@/components/PortfolioGallery";
+import { PortfolioVideos } from "@/components/PortfolioVideos";
 import { Reveal } from "@/components/Reveal";
-import { ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
+import { ArrowDownIcon, ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
 import { whatsappHref } from "@/lib/site";
+import { services } from "@/lib/services";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/portofolio/" },
-  title: "Portofolio & Referensi Pekerjaan Aluminium Kaca",
+  title: "Portofolio Aluminium & Kaca",
   description:
-    "Galeri tipe pekerjaan pintu aluminium, jendela aluminium, kusen, partisi kaca dan shower box untuk kebutuhan Jabodetabek dan sekitarnya.",
+    `Galeri foto ${services.length} jenis pekerjaan pintu, jendela, partisi kaca, dan kaca shower untuk kebutuhan Jabodetabek dan sekitarnya.`,
 };
 
 export default function PortfolioPage() {
@@ -20,19 +22,18 @@ export default function PortfolioPage() {
       >
         <div className="container portfolio-title-grid">
           <Reveal>
-            <p className="eyebrow">REFERENSI PEKERJAAN</p>
+            <p className="eyebrow">GALERI FOTO</p>
             <h1>
-              Lihat jenis pekerjaan
-              <br />
-              <span>aluminium & kaca.</span>
+              Galeri pekerjaan
+              <span> aluminium & kaca.</span>
             </h1>
-          </Reveal>
-          <Reveal className="portfolio-disclaimer glass-panel" delay={0.08}>
-            <span>CATATAN FOTO</span>
-            <p>
-              Foto pada galeri ini digunakan sebagai referensi jenis pekerjaan
-              yang kami layani dan bukan dokumentasi proyek Mestika Abadi Makmur.
+            <p className="portfolio-hero-lead">
+              Jelajahi {services.length} jenis pintu, jendela, partisi, dan kaca shower yang
+              dapat disesuaikan dengan kebutuhan ruang Anda.
             </p>
+            <a className="portfolio-video-jump" href="#galeri-video">
+              Lihat 4 video <ArrowDownIcon />
+            </a>
           </Reveal>
         </div>
       </section>
@@ -42,9 +43,18 @@ export default function PortfolioPage() {
         data-nav-theme="dark"
       >
         <div className="container">
-          <PortfolioCarousel />
+          <div className="portfolio-gallery-heading">
+            <div>
+              <p className="eyebrow">GALERI PRODUK DAN PEKERJAAN</p>
+              <h2>Pilih yang sesuai untuk ruang Anda.</h2>
+            </div>
+            <span>01 — {services.length}</span>
+          </div>
+          <PortfolioGallery />
         </div>
       </section>
+
+      <PortfolioVideos />
 
       <section className="section portfolio-upload-note">
         <div className="container upload-note-grid">

@@ -126,8 +126,7 @@ body {
 
 /* Liquid glass with subtle brand tint */
 /* Dark panels need their own foreground colors; primary blue is for light surfaces. */
-.services-page-card-5 .service-keyword,
-.portfolio-page-hero .portfolio-disclaimer > span {
+.services-page-card-5 .service-keyword {
   color: var(--accent);
 }
 
@@ -167,8 +166,7 @@ body {
 }
 
 .service-keyword,
-.reference-badge,
-.portfolio-disclaimer > span {
+.reference-badge {
   font-size: 11px;
   font-weight: 650;
   letter-spacing: .08em;
@@ -2599,6 +2597,11 @@ textarea {
 .services-refined-card-2 { grid-column: span 5; margin-top: 44px; }
 .services-refined-card-3 { grid-column: span 5; margin-top: 10px; }
 .services-refined-card-4 { grid-column: span 7; margin-top: 58px; }
+.services-refined-card-6,
+.services-refined-card-7,
+.services-refined-card-8,
+.services-refined-card-9 { grid-column: span 6; }
+.services-refined-card-10 { grid-column: span 12; }
 .services-refined-card-5 {
   grid-column: span 12;
   margin-top: 18px;

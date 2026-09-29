@@ -4,6 +4,7 @@ import { LineGlyph } from "@/components/LineGlyph";
 import { ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
 import { MobileMicroAccordion } from "@/components/MobileMicroAccordion";
 import { AboutStoryMoment } from "@/components/AboutStoryMoment";
+import { serviceBySlug } from "@/lib/services";
 import { siteConfig, whatsappHref } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -13,14 +14,9 @@ export const metadata: Metadata = {
     "Tentang Mestika Abadi Makmur, layanan fabrikasi dan pemasangan aluminium & kaca untuk rumah, ruko, kantor, dan bangunan komersial di Jabodetabek dan sekitarnya.",
 };
 
-const heroImage =
-  "https://images.pexels.com/photos/5511093/pexels-photo-5511093.jpeg?auto=compress&cs=tinysrgb&w=1800";
-
-const principleImage =
-  "https://images.pexels.com/photos/17168858/pexels-photo-17168858/free-photo-of-modern-design-of-room.jpeg?auto=compress&cs=tinysrgb&w=1800";
-
-const ctaImage =
-  "https://images.pexels.com/photos/1098982/pexels-photo-1098982.jpeg?auto=compress&cs=tinysrgb&w=1800";
+const heroImage = serviceBySlug["partisi-kaca"].image;
+const principleImage = serviceBySlug["pintu-lipat"].image;
+const ctaImage = serviceBySlug["pintu-kaca-swing-multi"].image;
 
 export default function AboutPage() {
   return (
@@ -63,25 +59,11 @@ export default function AboutPage() {
           <div className="about-refined-hero-visual">
             <img
               src={heroImage}
-              alt="Partisi kaca dan frame aluminium pada ruang kantor modern"
+              alt="Partisi kaca dengan rangka hitam pada ruang kerja"
               width="1400"
               height="1100"
               fetchPriority="high"
             />
-            <div className="about-refined-hero-shade" />
-
-            <div className="about-refined-identity glass-panel">
-              <span className="status-dot" />
-              <div>
-                <small>NAMA BADAN USAHA</small>
-                <strong>{siteConfig.name}</strong>
-              </div>
-            </div>
-
-            <div className="about-refined-area glass-panel">
-              <small>AREA LAYANAN</small>
-              <strong>Jabodetabek & sekitarnya</strong>
-            </div>
           </div>
         </div>
       </section>
@@ -91,13 +73,12 @@ export default function AboutPage() {
           <div className="about-refined-principle-media">
             <img
               src={principleImage}
-              alt="Bukaan kaca dan frame sebagai fokus perencanaan pemasangan"
+              alt="Pintu lipat aluminium dan kaca terpasang pada bukaan ruang"
               width="1300"
               height="1000"
               loading="lazy"
-              style={{ objectPosition: "61% 50%" }}
             />
-            <span className="reference-badge">REFERENSI PEKERJAAN</span>
+            <span className="reference-badge">FOTO PRODUK</span>
           </div>
 
           <div className="about-refined-principle-copy">
@@ -198,7 +179,7 @@ export default function AboutPage() {
         <div className="about-refined-cta-media">
           <img
             src={ctaImage}
-            alt="Pintu kaca dengan frame aluminium hitam"
+            alt="Pintu kaca swing multi dengan rangka aluminium hitam"
             width="1800"
             height="1200"
             loading="lazy"
@@ -212,7 +193,7 @@ export default function AboutPage() {
             <h2>
               Punya kebutuhan
               <br />
-              <span>aluminium atau kaca?</span>
+              <span>aluminium &amp; kaca?</span>
             </h2>
             <p>
               Kirim kebutuhan, lokasi, dan foto kondisi ruang agar konsultasi

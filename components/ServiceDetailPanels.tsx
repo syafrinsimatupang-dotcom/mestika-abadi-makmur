@@ -55,8 +55,11 @@ export function ServiceDetailPanels({ service }: { service: Service }) {
               <span key={item}>{item}</span>
             ))}
           </div>
+          <p className="detail-use-note">
+            Ukuran dan konfigurasi disesuaikan dengan fungsi ruang serta kondisi lokasi.
+          </p>
           <strong>
-            {service.keyword}
+            {service.shortTitle}
             <br />
             Jabodetabek
           </strong>
