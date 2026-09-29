@@ -9,7 +9,7 @@ import { serviceBySlug } from '@/lib/services';
 
 const kinds = ['door', 'door', 'window', 'partition', 'shower'] as const;
 const featuredServices = [
-  serviceBySlug['pintu-acp'],
+  serviceBySlug['pintu-panel-acp'],
   serviceBySlug['pintu-kaca-aluminium'],
   serviceBySlug['jendela-sliding-door'],
   serviceBySlug['partisi-kaca'],

@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   applicationName: siteConfig.name,
   category: "Construction",
   keywords: [
-    "pintu ACP Jabodetabek",
+    "pintu panel ACP Jabodetabek",
     "pintu kaca aluminium Jabodetabek",
     "jendela casement Jabodetabek",
     "partisi kaca Jabodetabek",

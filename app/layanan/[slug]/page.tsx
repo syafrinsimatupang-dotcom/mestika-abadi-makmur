@@ -8,11 +8,14 @@ import { ServiceDetailPanels } from "@/components/ServiceDetailPanels";
 import { RelatedServicesCollection } from "@/components/RelatedServicesCollection";
 import { MobileMicroAccordion } from "@/components/MobileMicroAccordion";
 import { ArrowLeftIcon, ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
-import { serviceBySlug, services } from "@/lib/services";
+import { legacyServiceSlugs, serviceBySlug, services } from "@/lib/services";
 import { siteConfig, whatsappHref } from "@/lib/site";
 
 export function generateStaticParams() {
-  return services.map((service) => ({ slug: service.slug }));
+  return [
+    ...services.map((service) => ({ slug: service.slug })),
+    ...legacyServiceSlugs.map((slug) => ({ slug })),
+  ];
 }
 
 export function generateMetadata({

@@ -165,7 +165,7 @@ test("portfolio lists every product reference and opens its detail page", async 
     ).toHaveAttribute("href", `/layanan/${service.slug}/`);
   }
   await cards.first().click();
-  await expect(page).toHaveURL(/\/layanan\/pintu-acp\/$/);
+  await expect(page).toHaveURL(/\/layanan\/pintu-panel-acp\/$/);
 });
 
 test("mobile service photos stay above their card text", async ({ page }) => {
@@ -183,7 +183,7 @@ test("mobile service photos stay above their card text", async ({ page }) => {
 
 test("related services end with a link to the full catalog", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/layanan/pintu-acp/");
+  await page.goto("/layanan/pintu-panel-acp/");
   const carousel = page.locator(".related-mobile-carousel");
   await expect(carousel.locator("[data-carousel-item]")).toHaveCount(5);
   await carousel.locator(".related-mobile-viewport").evaluate((element) =>
@@ -204,7 +204,7 @@ test("why choose us is concise and contact planner preserves input", async ({
 
   await page.goto("/kontak/");
   const product = page.getByRole("combobox", { name: "Layanan dan Produk" });
-  await expect(product).toHaveValue("Pintu ACP");
+  await expect(product).toHaveValue("Pintu Panel ACP");
   await product.selectOption("Pintu Kaca Aluminium");
   await expect(product).toHaveValue("Pintu Kaca Aluminium");
   await page.getByRole("textbox", { name: "Lokasi proyek" }).fill("Tangerang");
@@ -245,7 +245,7 @@ for (const width of [390, 1440]) {
     for (const route of [
       "/",
       "/layanan/",
-      "/layanan/pintu-acp/",
+      "/layanan/pintu-panel-acp/",
       "/portofolio/",
       "/tentang/",
       "/kontak/",
@@ -280,7 +280,7 @@ test("every displayed business address uses the complete address", async ({ page
     expect(values.every((value) => value.trim() === fullAddress), route).toBe(true);
   }
 
-  for (const route of ["/", "/layanan/pintu-acp/"]) {
+  for (const route of ["/", "/layanan/pintu-panel-acp/"]) {
     await page.goto(route);
     const schema = await page
       .locator('script[type="application/ld+json"]')
@@ -295,17 +295,17 @@ test("mobile product catalog shows all products and filters by type", async ({ p
 
   const catalog = page.locator(".services-refined-mobile");
   const tiles = catalog.locator(".services-mobile-tile");
-  await expect(tiles).toHaveCount(18);
-  await expect(catalog.getByText("18 produk")).toBeVisible();
+  await expect(tiles).toHaveCount(17);
+  await expect(catalog.getByText("17 produk")).toBeVisible();
 
-  for (const [label, count] of [["Pintu", 10], ["Jendela", 3], ["Partisi", 4], ["Shower", 1]] as const) {
+  for (const [label, count] of [["Pintu", 9], ["Jendela", 3], ["Partisi", 4], ["Shower", 1]] as const) {
     await catalog.getByRole("button", { name: new RegExp(`^${label}\\s*${count}$`) }).click();
     await expect(tiles).toHaveCount(count);
     await expect(catalog.getByText(`${count} produk`)).toBeVisible();
   }
 
-  await catalog.getByRole("button", { name: /^Semua\s*18$/ }).click();
-  await expect(tiles).toHaveCount(18);
+  await catalog.getByRole("button", { name: /^Semua\s*17$/ }).click();
+  await expect(tiles).toHaveCount(17);
   await tiles.last().click();
   await expect(page).toHaveURL(/\/layanan\/[^/]+\/$/);
 });

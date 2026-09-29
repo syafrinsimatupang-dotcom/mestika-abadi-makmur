@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: 'Mestika Abadi Makmur',
   description:
-    'Jasa fabrikasi dan pemasangan aluminium dan kaca di Jabodetabek: pintu ACP, pintu kaca aluminium, jendela sliding dan casement, partisi kaca, serta kaca shower kamar mandi.',
+    'Jasa fabrikasi dan pemasangan aluminium dan kaca di Jabodetabek: pintu panel ACP, pintu kaca aluminium, jendela sliding dan casement, partisi kaca, serta kaca shower kamar mandi.',
   area: 'Jabodetabek dan sekitarnya',
   address: 'Jl. H. Buang, RT/RW 03/03, Kelurahan Cipete, Kecamatan Pinang, Kota Tangerang',
   addressShort: 'Jl. H. Buang, RT/RW 03/03, Kelurahan Cipete, Kecamatan Pinang, Kota Tangerang',

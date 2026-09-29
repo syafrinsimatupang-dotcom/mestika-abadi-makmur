@@ -5,7 +5,7 @@ import { ArrowUpRightIcon } from '@/components/ArrowUpRightIcon';
 
 export function Footer() {
   const footerServices = [
-    'pintu-acp',
+    'pintu-panel-acp',
     'pintu-kaca-aluminium',
     'pintu-sliding-door',
     'jendela-sliding-door',

@@ -5082,7 +5082,7 @@ h2 > span,
   color: #50545c !important;
 }
 
-/* Product PNGs include a branded strip in their lower 22%. Show only the photo. */
+/* Preview images omit the branded strip; service pages show the supplied artwork in full. */
 .services-refined-media:has(> img[src^="/foto-produk/"][src$=".png"]) {
   aspect-ratio: 1.02;
   min-height: 0;
@@ -5985,4 +5985,27 @@ img[src^="/foto-produk/"][src$=".png"] {
   .about-values-bento { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .about-value-card,
   .about-value-card:nth-child(n) { min-height: 280px; }
+}
+
+/* Keep the complete supplied artwork, including its title and contact strip, on service pages. */
+.services-refined-media:has(> img[src^="/foto-produk/"][src$=".png"]),
+.services-mobile-tile-media:has(> img[src^="/foto-produk/"][src$=".png"]),
+.related-card-media:has(> img[src^="/foto-produk/"][src$=".png"]) {
+  background: #fff;
+}
+
+.services-refined-media > img[src^="/foto-produk/"][src$=".png"],
+.services-mobile-tile-media > img[src^="/foto-produk/"][src$=".png"],
+.related-card-media > img[src^="/foto-produk/"][src$=".png"] {
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  transform: none !important;
+}
+
+.services-mobile-tile-media:has(> img[src^="/foto-produk/"][src$=".png"]) {
+  aspect-ratio: 4 / 5;
 }

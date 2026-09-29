@@ -53,3 +53,9 @@ test("gallery videos load playable media on demand", async ({ page }) => {
     await video.evaluate((element: HTMLVideoElement) => element.pause());
   }
 });
+
+test("old ACP URL displays the merged product with its canonical URL", async ({ page }) => {
+  await page.goto("/layanan/pintu-acp/");
+  await expect(page.locator("h1")).toContainText("Pintu Panel ACP");
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", /\/layanan\/pintu-panel-acp\/$/);
+});

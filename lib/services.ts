@@ -15,13 +15,12 @@ export type Service = {
 };
 
 const catalog = [
-  ['pintu-acp', 'Pintu ACP', 'Pintu ACP/Pintu ACP 001.jpeg', 'Pintu berlapis ACP untuk tampilan bidang yang rapi dan modern.', 'Pintu · ACP · Custom', 'Rumah, ruko, dan ruang komersial'],
+  ['pintu-panel-acp', 'Pintu Panel ACP', 'Pintu Panel ACP/Pintu Panel ACP - 01.png', 'Pintu panel ACP untuk bidang tertutup dengan tampilan yang rapi.', 'Pintu · Panel · ACP', 'Rumah, kamar, dan ruang komersial'],
   ['pintu-kaca-aluminium', 'Pintu Kaca Aluminium', 'Pintu Kaca Aluminium/Pintu Kaca Aluminium - 01.png', 'Pintu kaca dengan rangka aluminium untuk akses yang terang dan tampilan ringan.', 'Pintu · Kaca · Aluminium', 'Rumah, kantor, dan toko'],
   ['pintu-kaca-swing-multi', 'Pintu Kaca Swing Multi', 'Pintu Kaca Swing Multi/Pintu Kaca Swing Multi - 01.png', 'Pintu kaca dengan beberapa daun ayun untuk bukaan yang lebih lebar.', 'Pintu · Kaca · Multi daun', 'Rumah, toko, dan ruang komersial'],
   ['pintu-kaca-swing-single', 'Pintu Kaca Swing Single', 'Pintu Kaca Swing Single/Pintu Kaca Swing Single - 01.png', 'Pintu kaca satu daun ayun dengan rangka aluminium untuk akses yang praktis.', 'Pintu · Kaca · Satu daun', 'Rumah, kantor, dan toko'],
   ['pintu-kawat-nyamuk', 'Pintu Kawat Nyamuk', 'Pintu Kawat Nyamuk/Pintu Kawat Nyamuk - 01.png', 'Pintu berpanel kawat nyamuk untuk membantu menjaga ventilasi dan membatasi serangga.', 'Pintu · Ventilasi · Kawat nyamuk', 'Rumah dan area servis'],
   ['pintu-lipat', 'Pintu Lipat', 'Pintu Lipat/Pintu Lipat - 01.png', 'Pintu lipat kaca berbingkai aluminium untuk bukaan yang dapat dilipat ke samping.', 'Pintu · Lipat · Aluminium', 'Rumah, ruko, dan ruang komersial'],
-  ['pintu-panel-acp', 'Pintu Panel ACP', 'Pintu Panel ACP/Pintu Panel ACP - 01.png', 'Pintu panel ACP untuk bidang tertutup dengan tampilan yang rapi.', 'Pintu · Panel · ACP', 'Rumah, kamar, dan ruang komersial'],
   ['pintu-sliding-door', 'Pintu Sliding Door', 'Pintu Sliding Door/Pintu Sliding Door - 01.png', 'Pintu kaca geser berbingkai aluminium untuk akses yang hemat ruang.', 'Pintu · Geser · Kaca', 'Rumah, dapur, dan ruang komersial'],
   ['pintu-sliding-gantung', 'Pintu Sliding Gantung', 'Pintu Sliding Gantung/Pintu Sliding Gantung - 01.png', 'Pintu geser gantung dengan rel atas untuk akses yang ringkas.', 'Pintu · Geser gantung · Aluminium', 'Rumah, kantor, dan area servis'],
   ['pintu-spandrel-full-aluminium', 'Pintu Spandrel Full Aluminium', 'Pintu Spandrel Full Aluminium/Pintu Spandrel Full Aluminium - 01.png', 'Pintu panel aluminium penuh untuk bukaan yang membutuhkan bidang tertutup.', 'Pintu · Spandrel · Aluminium', 'Rumah, kamar, dan area servis'],
@@ -61,11 +60,17 @@ export const services: Service[] = catalog.map(([slug, name, photo, description,
 }));
 
 export const serviceBySlug = Object.fromEntries(
-  services.map((service) => [service.slug, service]),
+  [
+    ...services.map((service) => [service.slug, service]),
+    // Keep the previously published ACP URL available after merging duplicate product photos.
+    ['pintu-acp', services.find((service) => service.slug === 'pintu-panel-acp')],
+  ],
 ) as Record<string, Service>;
 
+export const legacyServiceSlugs = ['pintu-acp'] as const;
+
 const featuredPortfolioSlugs = [
-  'pintu-acp',
+  'pintu-panel-acp',
   'pintu-kaca-aluminium',
   'jendela-sliding-door',
   'partisi-kaca',

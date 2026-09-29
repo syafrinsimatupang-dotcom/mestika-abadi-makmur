@@ -21,9 +21,9 @@ npm run dev
 
 ## Catalog and media
 
-The 18 product folders in `public/foto-produk/` correspond to the catalog in `lib/services.ts`. Product names, images, detail routes, filters, and the consultation selector use that catalog. When adding a folder, update the catalog and its filter expectations together.
+The 17 distinct product folders in `public/foto-produk/` correspond to the catalog in `lib/services.ts`. Product names, images, detail routes, filters, and the consultation selector use that catalog. The old `/layanan/pintu-acp/` URL remains available with a canonical link to `/layanan/pintu-panel-acp/`. When adding a folder, update the catalog and its filter expectations together.
 
-Product and portfolio photos use the supplied assets. Existing PNG artwork includes a branding footer; the image containers crop that footer from the visible product photo. Some established architectural hero images still use Pexels. The four videos and their poster images are in `public/foto-produk/VIDEO/` and appear only in the portfolio gallery. Videos load on demand.
+Product and portfolio photos use the supplied assets. Existing PNG artwork includes a branding footer: service catalog cards show the full artwork, while hero images and home and portfolio previews crop the footer. Some established architectural hero images still use Pexels. The four videos and their poster images are in `public/foto-produk/VIDEO/` and appear only in the portfolio gallery. Videos load on demand.
 
 The interface uses blue and yellow brand accents, Geist and Plus Jakarta Sans fonts, native scrolling carousels, and a compact filtered mobile catalog.
 
