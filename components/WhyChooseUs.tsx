@@ -179,6 +179,9 @@ export function WhyChooseUs() {
         <div className="why-us-mobile-carousel" aria-label="Alasan memilih Mestika Abadi Makmur">
           <div
             className="why-us-mobile-viewport"
+            tabIndex={0}
+            role="region"
+            aria-label="Alasan memilih Mestika Abadi Makmur"
             ref={viewportRef}
             onScroll={syncActive}
           >

@@ -1,65 +1,47 @@
-# Mestika Abadi Makmur
+﻿# Mestika Abadi Makmur
 
-Production-oriented marketing website for **Mestika Abadi Makmur**, focused on aluminium & glass fabrication/installation in Tangerang.
+Marketing website for aluminium and glass fabrication and installation in Jabodetabek.
 
-## Stack
-- Next.js 15 + React 19 + TypeScript
-- Framer Motion for scroll/micro-interactions
-- Headless WordPress REST API for articles
-- Static export (`out/`) so the marketing site can be deployed to standard shared hosting/CDN
-- CSS-first design system with no heavy UI framework
+## Stack and setup
 
-## Local setup
+Next.js 15, React 19, TypeScript, and Framer Motion. Public pages use static generation, with client components for filters, carousels, menus, and the WhatsApp planner.
+
 ```bash
 npm install
 cp .env.example .env.local
 npm run dev
 ```
 
-## Production configuration
-- `NEXT_PUBLIC_WHATSAPP_NUMBER`: defaults to the verified business WhatsApp `628131909449`; override only if the number changes.
-- `NEXT_PUBLIC_SITE_URL`: canonical website origin; defaults to `https://mestikaabadimakmur.com`. Use this same value in the hosting build environment.
-- `WORDPRESS_API_URL`: WordPress site origin or full `/wp-json/wp/v2` REST base.
+## Configuration
 
-Business address currently used by the website:
-`Jl. H. Buang, RT/RW 03/03, Kelurahan Cipete, Kecamatan Pinang, Kota Tangerang`.
+- `NEXT_PUBLIC_SITE_URL`: canonical origin; defaults to `https://mestikaabadimakmur.com`.
+- `WORDPRESS_API_URL`: WordPress origin or full `/wp-json/wp/v2` REST base. Without a configured CMS, the article page displays its empty state.
+- Business contact details live in `lib/site.ts`. WhatsApp: `0823-1894-8989` (`6282318948989`).
+- Address: Jl. H. Buang, RT/RW 03/03, Kelurahan Cipete, Kecamatan Pinang, Kota Tangerang.
 
-## WordPress article workflow
-WordPress acts only as the CMS. The public article listing remains at `/artikel/` and detail pages remain at `/artikel/[slug]/`.
+## Catalog and media
 
-At build time the website reads published posts from the WordPress REST API, creates static article pages, and includes those slugs in the sitemap. When an article is published or updated, trigger a new website build/deployment so the static export receives the latest CMS content.
+The 18 product folders in `public/foto-produk/` correspond to the catalog in `lib/services.ts`. Product names, images, detail routes, filters, and the consultation selector use that catalog. When adding a folder, update the catalog and its filter expectations together.
 
-## SEO focus
-Dedicated routes target:
-- pintu aluminium Tangerang
-- jendela aluminium Tangerang
-- kusen aluminium Tangerang
-- partisi kaca Tangerang
-- shower box Tangerang
+Product and portfolio photos use the supplied assets. Existing PNG artwork includes a branding footer; the image containers crop that footer from the visible product photo. Some established architectural hero images still use Pexels. The four videos and their poster images are in `public/foto-produk/VIDEO/` and appear only in the portfolio gallery. Videos load on demand.
 
-The service hub lives at `/layanan/`, with SEO detail pages at `/layanan/[slug]/`.
+The interface uses blue and yellow brand accents, Geist and Plus Jakarta Sans fonts, native scrolling carousels, and a compact filtered mobile catalog.
 
-## Asset policy
-Visual references now use free-to-use Pexels and Pixabay photography focused on real service activity: survey, measurement, frame fitting, glass handling, sealing, installation, finishing, and inspection. Replace these references with genuine project photography as soon as final project documentation is available so the portfolio reflects completed work accurately.
+## Articles
 
-## Deployment
-Run `npm run build`. The static site is generated in `out/` and can be uploaded to a static host or shared-hosting public web root.
+WordPress serves as the article CMS. The website reads published posts during the build and exports `/artikel/` and `/artikel/[slug]/`. Rebuild and deploy after publishing or editing articles. Article slugs are included in the sitemap.
 
-## Dependency security
+## Verification and deployment
 
-The project keeps Next.js on the current 15.5 maintenance line and overrides its nested PostCSS dependency to `8.5.24`, which includes the 2026 PostCSS security fixes. CI runs `npm run audit:prod` before type-check and build, so high-severity production dependency regressions fail the quality gate.
+```bash
+npm run audit:prod
+npm run typecheck
+npm run build
+npm run check:brand
+```
 
-`npm fund` only lists sponsorship links for open-source dependencies; it is informational and not a vulnerability report. Install-time funding notices are disabled through `.npmrc`.
+Deploy the generated `out/` directory to a static host with directory index support. Build output and local environment files are excluded from Git.
 
+For browser verification, serve `out/`, set `TEST_BASE_URL` to that server, then run `npm run test:ui`. Tests use Microsoft Edge by default; set `PLAYWRIGHT_CHANNEL=chromium` to use an installed Playwright Chromium browser. Coverage includes all catalog routes at mobile, tablet, and desktop widths, accessibility checks, navigation, carousels, filtering, and WhatsApp message composition.
 
-## Design system compliance
-
-- Visual direction: premium minimalism / Apple-esque SaaS with monumental image-led heroes, extreme typography contrast, generous whitespace, and scroll-driven storytelling.
-- Liquid glass uses ultra-thin translucent backgrounds, 24px blur, 180–200% backdrop saturation, 1px highlight borders, broad soft shadow, and <3% static grain masking.
-- Chromatic palette is restricted to `#D9362B` (Primary), `#202124` (Secondary), and `#F28C28` (Accent); white/black are used only as neutral material/light/shadow values.
-- Fonts are restricted to Geist Sans and Plus Jakarta Sans (both within the approved font set).
-- Static line icons are adapted from Iconoir (MIT), normalized to 1.25px stroke and `currentColor`. SVG animation is intentionally disabled.
-- Photography uses Pexels/Pixabay installation-process visual references until genuine project photography is available.
-- Portfolio and ordered process sliders use Embla Carousel, with circular translucent chevron controls, pagination dots, and capsule progress indicators.
-- Detailed system presentation uses a vertical accordion + synchronized exploded-view motion; SVGs themselves remain static.
-- The variation switcher uses a Framer Motion `layoutId` sliding pill.
+Production dependency checks fail for high severity vulnerabilities. PostCSS is pinned through an override in `package.json`.
