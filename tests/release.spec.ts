@@ -59,3 +59,25 @@ test("old ACP URL displays the merged product with its canonical URL", async ({ 
   await expect(page.locator("h1")).toContainText("Pintu Panel ACP");
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", /\/layanan\/pintu-panel-acp\/$/);
 });
+
+test("every service detail shows its complete branded image on mobile and desktop", async ({ page }) => {
+  test.setTimeout(120000);
+  for (const width of [390, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    for (const service of services) {
+      await page.goto(`/layanan/${service.slug}/`);
+      const image = page.locator(".service-hero-image img");
+      await expect(image).toBeVisible();
+      const display = await image.evaluate((element: HTMLImageElement) => ({
+        loaded: element.naturalWidth > 0 && element.naturalHeight > 0,
+        fit: getComputedStyle(element).objectFit,
+        transform: getComputedStyle(element).transform,
+      }));
+      expect(display, `${service.shortTitle} at ${width}px`).toEqual({
+        loaded: true,
+        fit: "contain",
+        transform: "none",
+      });
+    }
+  }
+});

@@ -5990,12 +5990,14 @@ img[src^="/foto-produk/"][src$=".png"] {
 /* Keep the complete supplied artwork, including its title and contact strip, on service pages. */
 .services-refined-media:has(> img[src^="/foto-produk/"][src$=".png"]),
 .services-mobile-tile-media:has(> img[src^="/foto-produk/"][src$=".png"]),
+.service-hero-image:has(> img[src^="/foto-produk/"][src$=".png"]),
 .related-card-media:has(> img[src^="/foto-produk/"][src$=".png"]) {
   background: #fff;
 }
 
 .services-refined-media > img[src^="/foto-produk/"][src$=".png"],
 .services-mobile-tile-media > img[src^="/foto-produk/"][src$=".png"],
+.service-hero-image > img[src^="/foto-produk/"][src$=".png"],
 .related-card-media > img[src^="/foto-produk/"][src$=".png"] {
   inset: 0 !important;
   width: 100% !important;
@@ -6007,5 +6009,13 @@ img[src^="/foto-produk/"][src$=".png"] {
 }
 
 .services-mobile-tile-media:has(> img[src^="/foto-produk/"][src$=".png"]) {
+  aspect-ratio: 4 / 5;
+}
+
+.service-hero .service-hero-image:has(> img[src^="/foto-produk/"][src$=".png"]) {
+  width: 100%;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
   aspect-ratio: 4 / 5;
 }
