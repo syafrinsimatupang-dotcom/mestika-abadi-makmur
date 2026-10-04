@@ -49,7 +49,7 @@ export default function PortfolioPage() {
               <p className="eyebrow">GALERI PRODUK DAN PEKERJAAN</p>
               <h2>Pilih yang sesuai untuk ruang Anda.</h2>
             </div>
-            <span>01 — {services.length}</span>
+            <span>{services.reduce((total, service) => total + service.images.length, 0)} foto</span>
           </div>
           <PortfolioGallery />
         </div>

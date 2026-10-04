@@ -157,14 +157,22 @@ test("portfolio lists every product reference and opens its detail page", async 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/portofolio/");
   const cards = page.locator(".portfolio-gallery-card");
-  await expect(cards).toHaveCount(services.length);
+  await expect(cards).toHaveCount(services.reduce((total, service) => total + service.images.length, 0));
+  expect(await cards.locator("img").evaluateAll((images) => images.map((image) => image.getAttribute("src")))).toEqual(services.flatMap((service) => service.images));
+  for (const width of [320, 390, 768, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    expect(await page.locator(".portfolio-gallery").evaluate((grid) => getComputedStyle(grid).gridTemplateColumns.split(" ").length)).toBe(3);
+    expect(await page.locator(".portfolio-video-grid").evaluate((grid) => getComputedStyle(grid).gridTemplateColumns.split(" ").length)).toBe(width <= 820 ? 1 : 2);
+  }
+  expect(await cards.evaluateAll((items) => items.every((card) => card.querySelector("h3")?.textContent?.trim() && card.querySelector(".portfolio-gallery-copy > div > span")?.textContent?.trim()))).toBe(true);
+  await page.setViewportSize({ width: 390, height: 844 });
   await expect(page.locator(".portfolio-video-card video")).toHaveCount(videos.length);
   await page.getByRole("link", { name: `Lihat ${videos.length} video` }).click();
   await expect(page).toHaveURL(/#galeri-video$/);
   await expect(page.locator("#portfolio-video-title")).toBeInViewport();
   for (const service of services) {
     await expect(
-      page.getByRole("link", { name: `Lihat detail ${service.shortTitle}`, exact: true }),
+      page.getByRole("link", { name: `Lihat detail ${service.shortTitle}, foto 1`, exact: true }),
     ).toHaveAttribute("href", `/layanan/${service.slug}/`);
   }
   await cards.first().click();

@@ -5,29 +5,26 @@ import { services } from "@/lib/services";
 export function PortfolioGallery() {
   return (
     <div className="portfolio-gallery">
-      {services.map((service, index) => (
+      {services.flatMap((service) => service.images.map((image, index) => (
         <Link
           className="portfolio-gallery-card"
           href={`/layanan/${service.slug}/`}
-          aria-label={`Lihat detail ${service.shortTitle}`}
-          key={service.slug}
+          aria-label={`Lihat detail ${service.shortTitle}, foto ${index + 1}`}
+          key={image}
         >
           <div className="portfolio-gallery-media">
             <img
-              src={service.image}
-              alt={service.imageAlt}
+              src={image}
+              alt={`${service.shortTitle} — foto ${index + 1}`}
               width="960"
               height="960"
-              loading={index < 3 ? "eager" : "lazy"}
+              loading="lazy"
               style={{ objectPosition: service.imagePosition }}
             />
-            <span className="portfolio-gallery-number">
-              {String(index + 1).padStart(2, "0")}
-            </span>
           </div>
           <div className="portfolio-gallery-copy">
             <div>
-              <p>{service.images.length} FOTO PRODUK</p>
+              <p>FOTO {String(index + 1).padStart(2, "0")}</p>
               <h3>{service.shortTitle}</h3>
               <span>{service.description}</span>
             </div>
@@ -36,7 +33,7 @@ export function PortfolioGallery() {
             </span>
           </div>
         </Link>
-      ))}
+      )))}
     </div>
   );
 }
