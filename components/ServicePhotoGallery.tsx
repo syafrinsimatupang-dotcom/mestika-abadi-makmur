@@ -2,10 +2,13 @@
 
 import { useRef, useState } from "react";
 import type { Service } from "@/lib/services";
+import { useHorizontalScrollTracker } from "@/components/useHorizontalScrollTracker";
+import { LineGlyph } from "@/components/LineGlyph";
 
 export function ServicePhotoGallery({ service }: { service: Service }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const [selected, setSelected] = useState(0);
+  const { viewportRef, activeIndex, scrollByItem } = useHorizontalScrollTracker(service.images.length);
   const move = (direction: number) => setSelected((current) =>
     (current + direction + service.images.length) % service.images.length,
   );
@@ -17,16 +20,25 @@ export function ServicePhotoGallery({ service }: { service: Service }) {
           <div>
             <p className="eyebrow">GALERI PRODUK</p>
             <h2 id="product-photo-title">Detail {service.shortTitle}.</h2>
-            <p>Pilih foto untuk melihat tampilan lengkapnya.</p>
+            <p>Geser untuk melihat foto lainnya. Ketuk foto untuk memperbesar.</p>
           </div>
           <span>{service.images.length} foto</span>
         </div>
-        <div className="product-photo-grid">
+        <div className="product-photo-carousel">
+        <div className="product-photo-navigation">
+          <span aria-live="polite">Foto {activeIndex + 1} / {service.images.length}</span>
+          <div className="carousel-controls" aria-label="Navigasi foto produk">
+            <button type="button" onClick={() => scrollByItem(-1)} disabled={activeIndex === 0} aria-label="Geser ke foto sebelumnya"><LineGlyph kind="navLeft" /></button>
+            <button type="button" onClick={() => scrollByItem(1)} disabled={activeIndex === service.images.length - 1} aria-label="Geser ke foto berikutnya"><LineGlyph kind="navRight" /></button>
+          </div>
+        </div>
+        <div className="product-photo-grid" ref={viewportRef} role="region" aria-label={`Carousel foto ${service.shortTitle}`}>
           {service.images.map((src, index) => (
             <button
               key={src}
               type="button"
               className="product-photo-button"
+              data-carousel-item
               aria-label={`Perbesar foto ${index + 1} ${service.shortTitle}`}
               onClick={() => { setSelected(index); dialog.current?.showModal(); }}
             >
@@ -34,6 +46,7 @@ export function ServicePhotoGallery({ service }: { service: Service }) {
               <span>Foto {String(index + 1).padStart(2, "0")} <span aria-hidden="true">↗</span></span>
             </button>
           ))}
+        </div>
         </div>
       </div>
       <dialog

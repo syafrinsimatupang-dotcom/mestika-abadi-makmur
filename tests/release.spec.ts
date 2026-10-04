@@ -86,6 +86,17 @@ test("every service detail shows its complete branded image on mobile and deskto
 });
 
 test("product gallery enlarges complete artwork and supports keyboard navigation", async ({ page }) => {
+  for (const width of [390, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/layanan/pintu-panel-acp/");
+    const carousel = page.locator(".product-photo-carousel");
+    await expect(carousel.getByText("Foto 1 / 5", { exact: true })).toBeVisible();
+    await carousel.getByRole("button", { name: "Geser ke foto berikutnya" }).click();
+    await expect(carousel.getByText("Foto 2 / 5", { exact: true })).toBeVisible();
+    await carousel.locator(".product-photo-grid").evaluate((element) => element.scrollTo({ left: element.scrollWidth, behavior: "instant" }));
+    await expect(carousel.getByText("Foto 5 / 5", { exact: true })).toBeVisible();
+    await expect(carousel.getByRole("button", { name: "Geser ke foto berikutnya" })).toBeDisabled();
+  }
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/layanan/pintu-panel-acp/");
   const photos = page.locator(".product-photo-button");

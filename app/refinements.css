@@ -6025,7 +6025,12 @@ img[src^="/Footage%20Produk/"][src$=".png"] {
 .product-photo-heading h2 { max-width:850px; font-size:clamp(28px,4vw,48px); line-height:1.12; letter-spacing:-.035em; }
 .product-photo-heading p:not(.eyebrow) { color:#5b6068; margin:16px 0 0; }
 .product-photo-heading > span { flex-shrink:0; color:#003878; font-size:14px; }
-.product-photo-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+.product-photo-carousel { max-width:900px; margin-inline:auto; }
+.product-photo-navigation { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:18px; color:#536174; font-size:13px; }
+.product-photo-navigation button:disabled { opacity:.4; cursor:default; }
+.product-photo-grid { display:grid; grid-auto-flow:column; grid-auto-columns:60%; gap:24px; overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x mandatory; scrollbar-width:none; padding:5px 3px 10px; }
+.product-photo-grid::-webkit-scrollbar { display:none; }
+.product-photo-grid > button { scroll-snap-align:center; }
 .product-photo-button { display:block; width:100%; overflow:hidden; padding:0; border:1px solid #e3e4e7; border-radius:18px; background:#fff; text-align:left; color:#202124; cursor:pointer; }
 .product-photo-button > img[src] { position:static!important; display:block; width:100%!important; height:auto!important; aspect-ratio:4/5; object-fit:contain!important; transform:none!important; }
 .product-photo-button > span { display:flex; justify-content:space-between; padding:16px; font-size:13px; font-weight:600; }
@@ -6042,7 +6047,7 @@ body:has(.product-photo-dialog[open]) { overflow:hidden; }
 @media(max-width:640px) {
   .product-photo-heading { align-items:flex-start; gap:16px; }
   .product-photo-heading > span { padding-top:3px; }
-  .product-photo-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+  .product-photo-grid { grid-auto-columns:88%; gap:12px; }
   .product-photo-button { border-radius:12px; }
   .product-photo-button > span { padding:12px; font-size:12px; }
 }
