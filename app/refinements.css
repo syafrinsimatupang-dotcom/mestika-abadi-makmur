@@ -5431,7 +5431,7 @@ img[src^="/Footage%20Produk/"][src$=".png"] {
 }
 
 .portfolio-full-section .portfolio-gallery-copy h3 {
-  margin: 0 0 9px;
+  margin: 0;
   color: var(--secondary);
   font-family: var(--font-jakarta), var(--font-geist), sans-serif;
   font-size: clamp(21px, 1.8vw, 27px);
@@ -5525,7 +5525,7 @@ img[src^="/Footage%20Produk/"][src$=".png"] {
   }
 
   .portfolio-gallery-media {
-    aspect-ratio: 1;
+    aspect-ratio: 3 / 4;
   }
 
   .portfolio-gallery-copy {

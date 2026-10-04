@@ -164,7 +164,7 @@ test("portfolio lists every product reference and opens its detail page", async 
     expect(await page.locator(".portfolio-gallery").evaluate((grid) => getComputedStyle(grid).gridTemplateColumns.split(" ").length)).toBe(3);
     expect(await page.locator(".portfolio-video-grid").evaluate((grid) => getComputedStyle(grid).gridTemplateColumns.split(" ").length)).toBe(width <= 820 ? 1 : 2);
   }
-  expect(await cards.evaluateAll((items) => items.every((card) => card.querySelector("h3")?.textContent?.trim() && card.querySelector(".portfolio-gallery-copy > div > span")?.textContent?.trim()))).toBe(true);
+  expect(await cards.evaluateAll((items) => items.every((card) => card.querySelector("h3")?.textContent?.trim()))).toBe(true);
   await page.setViewportSize({ width: 390, height: 844 });
   await expect(page.locator(".portfolio-video-card video")).toHaveCount(videos.length);
   await page.getByRole("link", { name: `Lihat ${videos.length} video` }).click();

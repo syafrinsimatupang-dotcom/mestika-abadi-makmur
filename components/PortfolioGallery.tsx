@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
 import { services } from "@/lib/services";
 
 export function PortfolioGallery() {
@@ -24,13 +23,8 @@ export function PortfolioGallery() {
           </div>
           <div className="portfolio-gallery-copy">
             <div>
-              <p>FOTO {String(index + 1).padStart(2, "0")}</p>
               <h3>{service.shortTitle}</h3>
-              <span>{service.description}</span>
             </div>
-            <span className="portfolio-gallery-arrow" aria-hidden="true">
-              <ArrowUpRightIcon />
-            </span>
           </div>
         </Link>
       )))}
