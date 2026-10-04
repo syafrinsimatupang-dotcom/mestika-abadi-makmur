@@ -27,7 +27,7 @@ export function PortfolioGallery() {
           </div>
           <div className="portfolio-gallery-copy">
             <div>
-              <p>FOTO PRODUK</p>
+              <p>{service.images.length} FOTO PRODUK</p>
               <h3>{service.shortTitle}</h3>
               <span>{service.description}</span>
             </div>

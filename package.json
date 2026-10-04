@@ -9,7 +9,9 @@
     "typecheck": "tsc --noEmit",
     "check:brand": "node scripts/check-brand-assets.mjs",
     "audit:prod": "npm audit --omit=dev --audit-level=high",
-    "test:ui": "playwright test"
+    "test:ui": "playwright test",
+    "sync:media": "node scripts/sync-product-media.mjs",
+    "prebuild": "npm run sync:media"
   },
   "dependencies": {
     "framer-motion": "^12.23.24",

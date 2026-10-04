@@ -5083,22 +5083,22 @@ h2 > span,
 }
 
 /* Preview images omit the branded strip; service pages show the supplied artwork in full. */
-.services-refined-media:has(> img[src^="/foto-produk/"][src$=".png"]) {
+.services-refined-media:has(> img[src^="/Footage%20Produk/"][src$=".png"]) {
   aspect-ratio: 1.02;
   min-height: 0;
 }
 
-.services-refined-mobile-media:has(> img[src^="/foto-produk/"][src$=".png"]),
-.service-mobile-image:has(> img[src^="/foto-produk/"][src$=".png"]) {
+.services-refined-mobile-media:has(> img[src^="/Footage%20Produk/"][src$=".png"]),
+.service-mobile-image:has(> img[src^="/Footage%20Produk/"][src$=".png"]) {
   height: auto !important;
   aspect-ratio: 1.02;
 }
 
-.service-mobile-card > a:has(> .service-mobile-image > img[src^="/foto-produk/"][src$=".png"]) {
+.service-mobile-card > a:has(> .service-mobile-image > img[src^="/Footage%20Produk/"][src$=".png"]) {
   grid-template-rows: auto minmax(0, 1fr);
 }
 
-img[src^="/foto-produk/"][src$=".png"] {
+img[src^="/Footage%20Produk/"][src$=".png"] {
   position: absolute !important;
   inset: 0 auto auto 0;
   width: 100% !important;
@@ -5253,7 +5253,7 @@ img[src^="/foto-produk/"][src$=".png"] {
   }
 
   .services-refined-mobile-media,
-  .services-refined-mobile-media:has(> img[src^="/foto-produk/"][src$=".png"]) {
+  .services-refined-mobile-media:has(> img[src^="/Footage%20Produk/"][src$=".png"]) {
     height: 250px !important;
     aspect-ratio: auto;
     flex: 0 0 250px;
@@ -5988,17 +5988,17 @@ img[src^="/foto-produk/"][src$=".png"] {
 }
 
 /* Keep the complete supplied artwork, including its title and contact strip, on service pages. */
-.services-refined-media:has(> img[src^="/foto-produk/"][src$=".png"]),
-.services-mobile-tile-media:has(> img[src^="/foto-produk/"][src$=".png"]),
-.service-hero-image:has(> img[src^="/foto-produk/"][src$=".png"]),
-.related-card-media:has(> img[src^="/foto-produk/"][src$=".png"]) {
+.services-refined-media:has(> img[src^="/Footage%20Produk/"][src$=".png"]),
+.services-mobile-tile-media:has(> img[src^="/Footage%20Produk/"][src$=".png"]),
+.service-hero-image:has(> img[src^="/Footage%20Produk/"][src$=".png"]),
+.related-card-media:has(> img[src^="/Footage%20Produk/"][src$=".png"]) {
   background: #fff;
 }
 
-.services-refined-media > img[src^="/foto-produk/"][src$=".png"],
-.services-mobile-tile-media > img[src^="/foto-produk/"][src$=".png"],
-.service-hero-image > img[src^="/foto-produk/"][src$=".png"],
-.related-card-media > img[src^="/foto-produk/"][src$=".png"] {
+.services-refined-media > img[src^="/Footage%20Produk/"][src$=".png"],
+.services-mobile-tile-media > img[src^="/Footage%20Produk/"][src$=".png"],
+.service-hero-image > img[src^="/Footage%20Produk/"][src$=".png"],
+.related-card-media > img[src^="/Footage%20Produk/"][src$=".png"] {
   inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
@@ -6008,14 +6008,41 @@ img[src^="/foto-produk/"][src$=".png"] {
   transform: none !important;
 }
 
-.services-mobile-tile-media:has(> img[src^="/foto-produk/"][src$=".png"]) {
+.services-mobile-tile-media:has(> img[src^="/Footage%20Produk/"][src$=".png"]) {
   aspect-ratio: 4 / 5;
 }
 
-.service-hero .service-hero-image:has(> img[src^="/foto-produk/"][src$=".png"]) {
+.service-hero .service-hero-image:has(> img[src^="/Footage%20Produk/"][src$=".png"]) {
   width: 100%;
   height: auto !important;
   min-height: 0 !important;
   max-height: none !important;
   aspect-ratio: 4 / 5;
+}
+
+/* Complete artwork stays readable in the product gallery and its enlarged view. */
+.product-photo-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:28px; }
+.product-photo-heading h2 { max-width:850px; font-size:clamp(28px,4vw,48px); line-height:1.12; letter-spacing:-.035em; }
+.product-photo-heading p:not(.eyebrow) { color:#5b6068; margin:16px 0 0; }
+.product-photo-heading > span { flex-shrink:0; color:#003878; font-size:14px; }
+.product-photo-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+.product-photo-button { display:block; width:100%; overflow:hidden; padding:0; border:1px solid #e3e4e7; border-radius:18px; background:#fff; text-align:left; color:#202124; cursor:pointer; }
+.product-photo-button > img[src] { position:static!important; display:block; width:100%!important; height:auto!important; aspect-ratio:4/5; object-fit:contain!important; transform:none!important; }
+.product-photo-button > span { display:flex; justify-content:space-between; padding:16px; font-size:13px; font-weight:600; }
+.product-photo-button:focus-visible { outline:3px solid #0057ae; outline-offset:4px; }
+.product-photo-dialog { padding:0; border:0; background:transparent; color:#fff; max-width:100vw; max-height:100dvh; width:min(960px,100%); overflow:visible; }
+.product-photo-dialog::backdrop { background:rgba(9,14,23,.94); }
+body:has(.product-photo-dialog[open]) { overflow:hidden; }
+.product-photo-viewer { display:flex; flex-direction:column; align-items:center; padding:12px; gap:12px; }
+.product-photo-toolbar { display:flex; align-items:center; justify-content:space-between; width:100%; gap:16px; font-size:14px; }
+.product-photo-viewer > img[src] { position:static!important; width:100%!important; height:calc(100dvh - 164px)!important; max-height:1000px!important; object-fit:contain!important; transform:none!important; }
+.product-photo-controls { display:flex; align-items:center; justify-content:center; gap:24px; }
+.product-photo-dialog button { display:grid; place-items:center; min-width:44px; min-height:44px; border:1px solid #747b86; border-radius:50%; background:#202a3b; color:#fff; cursor:pointer; }
+.product-photo-dialog button:focus-visible { outline:3px solid #ffca28; outline-offset:3px; }
+@media(max-width:640px) {
+  .product-photo-heading { align-items:flex-start; gap:16px; }
+  .product-photo-heading > span { padding-top:3px; }
+  .product-photo-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+  .product-photo-button { border-radius:12px; }
+  .product-photo-button > span { padding:12px; font-size:12px; }
 }

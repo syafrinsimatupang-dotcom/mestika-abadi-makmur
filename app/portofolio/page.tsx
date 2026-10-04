@@ -1,3 +1,4 @@
+import videos from "@/lib/portfolio-videos.json";
 import type { Metadata } from "next";
 import { PortfolioGallery } from "@/components/PortfolioGallery";
 import { PortfolioVideos } from "@/components/PortfolioVideos";
@@ -32,7 +33,7 @@ export default function PortfolioPage() {
               dapat disesuaikan dengan kebutuhan ruang Anda.
             </p>
             <a className="portfolio-video-jump" href="#galeri-video">
-              Lihat 4 video <ArrowDownIcon />
+              Lihat {videos.length} video <ArrowDownIcon />
             </a>
           </Reveal>
         </div>

@@ -1,3 +1,4 @@
+import videosManifest from "../lib/portfolio-videos.json";
 import { expect, test } from "@playwright/test";
 import { services } from "../lib/services";
 
@@ -43,7 +44,7 @@ test("gallery videos load playable media on demand", async ({ page }) => {
   test.setTimeout(90000);
   await page.goto("/portofolio/");
   const videos = page.locator("video");
-  await expect(videos).toHaveCount(4);
+  await expect(videos).toHaveCount(videosManifest.length);
   for (const video of await videos.all()) {
     await expect(video).toHaveAttribute("preload", "none");
     await video.evaluate((element: HTMLVideoElement) => { element.muted = true; element.load(); });
@@ -67,6 +68,8 @@ test("every service detail shows its complete branded image on mobile and deskto
     for (const service of services) {
       await page.goto(`/layanan/${service.slug}/`);
       const image = page.locator(".service-hero-image img");
+      await expect(page.locator(".product-photo-grid img")).toHaveCount(service.images.length);
+      expect(await page.locator(".product-photo-grid img").evaluateAll((images) => images.map((image) => image.getAttribute("src")))).toEqual(service.images);
       await expect(image).toBeVisible();
       const display = await image.evaluate((element: HTMLImageElement) => ({
         loaded: element.naturalWidth > 0 && element.naturalHeight > 0,
@@ -80,4 +83,23 @@ test("every service detail shows its complete branded image on mobile and deskto
       });
     }
   }
+});
+
+test("product gallery enlarges complete artwork and supports keyboard navigation", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/layanan/pintu-panel-acp/");
+  const photos = page.locator(".product-photo-button");
+  await photos.nth(1).click();
+  const dialog = page.getByRole("dialog");
+  await expect(dialog).toBeVisible();
+  await expect(dialog.locator("img")).toHaveAttribute("src", services[0].images[1]);
+  await page.keyboard.press("ArrowRight");
+  await expect(dialog.locator("img")).toHaveAttribute("src", services[0].images[2]);
+  expect(await dialog.locator("img").evaluate((image) => getComputedStyle(image).objectFit)).toBe("contain");
+  await page.keyboard.press("Escape");
+  await expect(dialog).not.toBeVisible();
+  await expect(photos.nth(1)).toBeFocused();
+  await page.goto("/layanan/partisi-kaca-tebal-10mm/");
+  await expect(page.locator("h1")).toContainText("Partisi Kaca Aluminium");
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", /\/layanan\/partisi-kaca-aluminium\/$/);
 });

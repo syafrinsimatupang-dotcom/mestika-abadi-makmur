@@ -1,3 +1,4 @@
+import videos from "../lib/portfolio-videos.json";
 import { expect, test } from "@playwright/test";
 import { services } from "../lib/services";
 import { existsSync, readdirSync } from "node:fs";
@@ -20,13 +21,15 @@ const sizes = [
 ];
 
 test("service catalog matches every product photo folder", () => {
-  const photoRoot = resolve(process.cwd(), "public", "foto-produk");
+  const photoRoot = resolve(process.cwd(), "public", "Footage Produk");
   const folders = readdirSync(photoRoot, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory() && entry.name !== "VIDEO")
-    .map((entry) => entry.name)
+    .filter((entry) => entry.isDirectory() && / - ALL$/i.test(entry.name) && !/OLD/i.test(entry.name))
+    .map((entry) => entry.name.replace(/ - ALL$/i, ""))
     .sort();
   expect(services.map((service) => service.shortTitle).sort()).toEqual(folders);
   for (const service of services) {
+    const files = readdirSync(resolve(photoRoot, `${service.shortTitle} - ALL`)).filter((file) => /\.(png|jpe?g|webp)$/i.test(file)).sort();
+    expect(service.images.map((src) => decodeURIComponent(src).split("/").at(-1)).sort()).toEqual(files);
     expect(
       existsSync(resolve(process.cwd(), "public", decodeURIComponent(service.image).slice(1))),
       service.shortTitle,
@@ -155,8 +158,8 @@ test("portfolio lists every product reference and opens its detail page", async 
   await page.goto("/portofolio/");
   const cards = page.locator(".portfolio-gallery-card");
   await expect(cards).toHaveCount(services.length);
-  await expect(page.locator(".portfolio-video-card video")).toHaveCount(4);
-  await page.getByRole("link", { name: "Lihat 4 video" }).click();
+  await expect(page.locator(".portfolio-video-card video")).toHaveCount(videos.length);
+  await page.getByRole("link", { name: `Lihat ${videos.length} video` }).click();
   await expect(page).toHaveURL(/#galeri-video$/);
   await expect(page.locator("#portfolio-video-title")).toBeInViewport();
   for (const service of services) {
@@ -295,17 +298,17 @@ test("mobile product catalog shows all products and filters by type", async ({ p
 
   const catalog = page.locator(".services-refined-mobile");
   const tiles = catalog.locator(".services-mobile-tile");
-  await expect(tiles).toHaveCount(17);
-  await expect(catalog.getByText("17 produk")).toBeVisible();
+  await expect(tiles).toHaveCount(services.length);
+  await expect(catalog.getByText(`${services.length} produk`)).toBeVisible();
 
-  for (const [label, count] of [["Pintu", 9], ["Jendela", 3], ["Partisi", 4], ["Shower", 1]] as const) {
+  for (const [label, count] of [["Pintu", 9], ["Jendela", 3], ["Partisi", 3], ["Shower", 1]] as const) {
     await catalog.getByRole("button", { name: new RegExp(`^${label}\\s*${count}$`) }).click();
     await expect(tiles).toHaveCount(count);
     await expect(catalog.getByText(`${count} produk`)).toBeVisible();
   }
 
-  await catalog.getByRole("button", { name: /^Semua\s*17$/ }).click();
-  await expect(tiles).toHaveCount(17);
+  await catalog.getByRole("button", { name: new RegExp(`^Semua\\s*${services.length}$`) }).click();
+  await expect(tiles).toHaveCount(services.length);
   await tiles.last().click();
   await expect(page).toHaveURL(/\/layanan\/[^/]+\/$/);
 });

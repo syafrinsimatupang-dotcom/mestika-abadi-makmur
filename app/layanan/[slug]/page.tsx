@@ -5,6 +5,7 @@ import { Reveal } from "@/components/Reveal";
 import { WhatsAppPlanner } from "@/components/WhatsAppPlanner";
 import { ProcessCarousel } from "@/components/ProcessCarousel";
 import { ServiceDetailPanels } from "@/components/ServiceDetailPanels";
+import { ServicePhotoGallery } from "@/components/ServicePhotoGallery";
 import { RelatedServicesCollection } from "@/components/RelatedServicesCollection";
 import { MobileMicroAccordion } from "@/components/MobileMicroAccordion";
 import { ArrowLeftIcon, ArrowUpRightIcon } from "@/components/ArrowUpRightIcon";
@@ -161,6 +162,8 @@ export default async function ServicePage({
           <ServiceDetailPanels service={service} />
         </div>
       </section>
+
+      <ServicePhotoGallery service={service} />
 
       <section className="section service-process">
         <div className="container">
