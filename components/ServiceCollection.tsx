@@ -71,7 +71,7 @@ export function ServiceCollection() {
 
       <div className="service-mobile-carousel">
         <div className="service-mobile-toolbar">
-          <p>Pilih layanan atau produk, lalu geser untuk melihat pilihan lainnya.</p>
+          <p>Geser untuk melihat pilihan.</p>
           <div className="carousel-controls" aria-label="Kontrol layanan">
             <button type="button" onClick={() => scrollByItem(-1)} aria-label="Layanan sebelumnya">
               <LineGlyph kind="navLeft" />
@@ -104,10 +104,6 @@ export function ServiceCollection() {
                   </div>
 
                   <div className="service-mobile-body">
-                    <div className="service-mobile-heading">
-                      <p className="service-keyword">{service.keyword}</p>
-                      <LineGlyph kind={kinds[index]} />
-                    </div>
                     <h3>{service.shortTitle}</h3>
                     <p>{service.description}</p>
                     <div className="service-link">Detail layanan <ArrowUpRightIcon /></div>

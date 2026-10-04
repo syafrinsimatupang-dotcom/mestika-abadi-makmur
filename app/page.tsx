@@ -52,17 +52,23 @@ export default function HomePage() {
             <div>
               <p className="eyebrow">LAYANAN DAN PRODUK</p>
               <h2>
-                Layanan dan produk.
+                Pilihan untuk
                 <br />
-                <span>Satu standar pengerjaan rapi.</span>
+                <span>setiap ruang.</span>
               </h2>
             </div>
             <p>
-              Pilih kebutuhan Anda—pintu, jendela, kusen, partisi kaca, atau
-              shower box. Kami bantu dari pengukuran hingga pemasangan.
+              Pintu, jendela, partisi, dan kaca shower sesuai kebutuhan Anda.
+              Kami bantu dari pengukuran hingga pemasangan.
             </p>
           </Reveal>
 
+          <div className="home-services-catalog">
+            <p>{services.length} pilihan layanan &amp; produk</p>
+            <Link className="button button-primary" href="/layanan/">
+              Lihat semua layanan &amp; produk <ArrowUpRightIcon />
+            </Link>
+          </div>
           <ServiceCollection />
         </div>
       </section>
